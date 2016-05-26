@@ -5,8 +5,7 @@
 - [IntelliJ IDEA Mac OS X Keymap](https://resources.jetbrains.com/assets/products/intellij-idea/IntelliJIDEA_ReferenceCard_mac.pdf)
 
 ## My Favorite (⌥, ⌘, ⇧, ⇪, ⎋)
-인텔리J의 단축키는 keymap 을 이클립스로 설정했을 때를 기준으로 한다. 
-> Window 에서는 Eclispe Window, Mac 에서는 Eclipse Mac
+인텔리J의 단축키는 keymap 을 이클립스로 설정했을 때를 기준으로 한다. (Window 에서는 Eclispe Window, Mac 에서는 Eclipse Mac)
 
 | 기능 | IntelliJ(Window) | IntelliJ(Mac) | SublimeText3 | Eclipse(Window) |
 |:--------|:--------:|:--------:|:--------:|:--------:|
