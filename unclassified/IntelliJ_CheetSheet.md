@@ -10,7 +10,8 @@
 | 기능 | IntelliJ(Window) | IntelliJ(Mac) | SublimeText3 | Eclipse(Window) |
 |:--------|:--------:|:--------:|:--------:|:--------:|
 |뭐든 검색|`Shift` * 2||||
-|기능 검색|`Ctrl` + `Shft` + `A`|`⌘` + `3`|||
+|기능 검색|`Ctrl` + `Shft` + `A`|`⌘` + `3`|`Ctrl` + `Shift` + `P`||
+|특정파일로이동|`Ctrl` + `Shft` + `R`||`Ctrl` + `P`||
 |에디터내 검색|`Ctrl` + `F`|`⌘` + `K`|||
 |메서드미리보기|`Ctrl` + `Shft` + `I`|`⌥` + `Space`|||
 |이전메서드/다음메서드|`Alt` + `←` or `→`|`⌘` + `[` or `]`|||
