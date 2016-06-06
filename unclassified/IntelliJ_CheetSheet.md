@@ -22,6 +22,3 @@
 |둘러씌우기|`Alt` + `Shift` + `Z`|`⌥` + `⌘` + `Z`|-|`Alt` + `Shift` + `Z`|
 |대소문자변환|`Ctrl` + `Shift` + `Y`|`⌘` + `Shift` + `Y`|`Ctrl` + `KU` or `KL`|`Ctrl` + `Shift` + `Y`or`X`|
 |창분할|-|-|`Alt` + `Shift` + `1`~`5`|`Ctrl` + `_` or `}`|
-||||||
-||||||
-||||||
