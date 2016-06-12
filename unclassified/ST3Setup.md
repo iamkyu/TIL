@@ -35,15 +35,15 @@
 }
 ```
 
-- `Tools > Build System > New Build System...` 에서 크롬 빌드 추가
+- `Tools > Build System > New Build System...` 에서 크롬 빌드 추가 *크롬 설치 경로 등에 따라 차이가 있을 수 있음
 
-크롬 설치 위치에 따라 달라질 수 있음.
 
-*macOS* ```
+#### macOS
+```
 { "cmd": ["open", "-a", "Google Chrome", "$file"] }
 ```
 
-
-*Windows* ```
+#### Windows
+```
 { "cmd": ["C:\/Program Files (x86)\/Google\/Chrome\/Application\/chrome.exe","$file"] }
 ```
