@@ -43,6 +43,7 @@
 { "cmd": ["open", "-a", "Google Chrome", "$file"] }
 ```
 
+
 *Windows* ```
 { "cmd": ["C:\/Program Files (x86)\/Google\/Chrome\/Application\/chrome.exe","$file"] }
 ```
