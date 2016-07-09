@@ -8,7 +8,7 @@
 
 나 역시 이전에 4번 정도 토비의 스프링을 공부하다 포기하였다. 그래도 역시 밥벌이 하는 주 언어가 `Java` 인데 그만큼 애정도 많고, 아직 모르는 것도 많고, 공부할 것도 많은 언어이다. 그래서 다시 토비의 스프링 책을 펼친다. <br>내가 교재를 보며 따라한 예제 소스는 아래 `github`에 공유하고 있다. 교재에서 사용하는 버전과 관계 없이 나는 그냥 `Java8`, `Spring4.2` 환경에서 테스트 하고 있다.
 
-> [https://github.com/iamkyu/spring-framework-study/tree/chap01]()
+> [https://github.com/iamkyu/spring-framework-study/tree/chap01](https://github.com/iamkyu/spring-framework-study/tree/chap01)
 
 ## 1장. 오브젝트와 의존관계
 
