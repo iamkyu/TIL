@@ -88,6 +88,10 @@
 { "cmd": ["open", "-a", "Google Chrome", "$file"] }
 ```
 
+```
+{ "cmd": ["open", "-a", "Google Chrome Canary", "$file"] }
+```
+
 #### Windows
 ```
 { "cmd": ["C:\/Program Files (x86)\/Google\/Chrome\/Application\/chrome.exe","$file"] }
