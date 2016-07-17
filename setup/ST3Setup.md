@@ -46,6 +46,8 @@
     "color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
     "folder_no_icon": true,
     "tabs_small": true,
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
     "draw_white_space": "all",
 
 	"font_size": 12,
@@ -84,6 +86,10 @@
 #### macOS
 ```
 { "cmd": ["open", "-a", "Google Chrome", "$file"] }
+```
+
+```
+{ "cmd": ["open", "-a", "Google Chrome Canary", "$file"] }
 ```
 
 #### Windows
