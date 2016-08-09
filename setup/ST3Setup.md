@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sublime Text Setup (Base Ver. ST3)
 
 - `View > Show Console` 메뉴에서 `Package Control` 설치를 위한 [import 소스](https://packagecontrol.io/installation) 추가
@@ -190,4 +189,3 @@
 ```
 { "cmd": ["C:\/Program Files (x86)\/Google\/Chrome\/Application\/chrome.exe","$file"] }
 ```
->>>>>>> 9842b424f25c2a72d09d08def824c6d6b71c9a79
