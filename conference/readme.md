@@ -30,7 +30,7 @@
 > - 7월 2일 (토) 12시 00분 ~ 18시 00분
 > - 팁스타운 B1. 팁스홀
 
-## Pivotal Cloud Native Roadshow
-> - [http://pivotal.io/event/pivotal-cloud-native-roadshow/seoul]()
-> - 7월 22일 (금) 09시 00분 ~ 17시 00분
-> - 코엑스 컨벤션 센터
+## [DomainDriven 정기 세미나 5회] TDD(테스트 주도 개발) 프로그래밍 삽질기
+> - [http://onoffmix.com/event/72797]()
+> - 7월 23일 (토) 15시 00분 ~ 17시 30분
+> - 토즈 신천점
