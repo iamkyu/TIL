@@ -31,15 +31,15 @@ $ git rebase -i HEAD~2
 위의 명령어로 최근 현재 HEAD 부터 최근 2개의 커밋을 `rebase` 하라고 명령한다.
 그럼 아래와 같은 화면이 나타난다.
 
-![](../img/git-commit-merge-img1.png)
+![](img/git-commit-merge-img1.png)
 
 두번째 줄의 `pick`을 `squash`로 변경한 후 `!wq`. 그럼 합친 커밋의 커밋 메시지를 새로 작성할 수 있게 해준다. 아래와 같이 커밋 메세지를 새롭게 입력한 후 `!wq`
 
-![](../img/git-commit-merge-img2.png)
+![](img/git-commit-merge-img2.png)
 
 이제 합친 커밋을 원격 저장소에 `push` 를 하며 오류가 발생한다. 
 
-![](../img/git-commit-merge-img3.png)
+![](img/git-commit-merge-img3.png)
 
 왜냐하면 히스토리로 봤을 때는 현재 로컬저장소에서 원격저장소로 푸쉬하려는 커밋은 HEAD가 더 뒤에 있기 때문이다. 위에서 커밋을 합치는 과정에서 더 이전의 커밋으로 합치는 과정을 거쳤기 때문인듯 하다. 이때에는 브런치명 앞에 `+` 를 포함한다.
 
