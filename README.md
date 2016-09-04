@@ -16,7 +16,7 @@
 ## 기타
 
 - [독서](https://github.com/iamkyu/TIL/tree/master/book-summary)
-- [세미나](https://github.com/iamkyu/TIL/tree/master/conference)
+- [세미나](https://github.com/iamkyu/TIL/tree/master/seminar)
 - [스터디모임](https://github.com/iamkyu/TIL/tree/master/study-group)
 - [IT트랜드](https://github.com/iamkyu/TIL/tree/master/it-trend)
 - [블로깅](https://github.com/iamkyu/TIL/tree/master/blogging)
