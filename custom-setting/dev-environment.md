@@ -38,7 +38,7 @@
 
 
 
-| 기타도구    | Mac                                      | Window                                   |
+| 기타도구    | Window                                      | Mac                                   |
 | ------- | ---------------------------------------- | ---------------------------------------- |
 | Diff 비교 | [WinMerge](http://winmerge.org/)         | [BeyondCompare](http://www.scootersoftware.com/download.php) |
 | 터미널     | [Conmenu](https://conemu.github.io/), [Putty](http://www.putty.org/) | [iTerm](https://www.iterm2.com/), [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), [TermHere](https://itunes.apple.com/us/app/termhere/id1114363220?mt=12) |
