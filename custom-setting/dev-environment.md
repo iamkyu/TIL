@@ -50,7 +50,7 @@
 
 8. Window ONLY
    - [클립보드관리자: CLCL](http://www.nakka.com/soft/clcl/index_eng.html)
-   - [빠른검색: Search Everything]([http://www.voidtools.com/](http://www.voidtools.com/))
+   - [빠른검색: Search Everything](http://www.voidtools.com/)
    - [화면분할: Win-Split](http://winsplit-revolution.en.softonic.com/)
 
 
