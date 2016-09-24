@@ -48,6 +48,7 @@ Stage this hunk [y,n,q,a,d,/,j,J,g,s,e,?]?
 
 ```shell
 $ git commit -v
+# 또는
 $ git commit --verbose
 ```
 
