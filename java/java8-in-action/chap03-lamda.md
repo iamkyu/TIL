@@ -8,22 +8,22 @@
 
 
 
-## 3장. 람다 표현식
+# 3장. 람다 표현식
 
-### 3.1 람다란 무엇인가?
+## 3.1 람다란 무엇인가?
 
 람다라는 용어는 람다 미적분학 학계에서 개발한 시스템에서 유래. [(위키피디아)](https://ko.wikipedia.org/wiki/람다_대수)
 
 
 
-#### 람다표현식이란
+### 람다표현식이란
 
 - 메서드로 전달할 수 있는 익명 함수를 단순화 한 것.
 - 나중에 한 번 이상 실행할 수 있도록 전달할 수 있는 코드 블록. [가장빨리만나는자바8, 22P]
 
 
 
-#### 특징
+### 특징
 
 - **익명**: 보통의 메서드와 달라 이름이 없다.
 - **함수**: 람다는 메서드처럼 특정 클래스에 종속되지 않으므로 함수라고 부른다. 하지만 메서드처럼 파라미터 리스트, 바디, 반환형식, 가능한 예외 리스트를 포함한다.
@@ -45,7 +45,7 @@ Comparator<Apple> byWeight =
 
 
 
-#### 람다의 구성
+### 람다의 구성
 
 ```java
 (Apple a1, Apple a2) // 파리미터 리스트
@@ -55,7 +55,7 @@ a1.getWeight().compareTo(a2.getWeigth()); // 람다의 반환값에 해당하는
 
 
 
-#### 자바8에서 지원하는 람다표현식 예제
+### 자바8에서 지원하는 람다표현식 예제
 
 ```java
 // String 파라미터 하나를 가지고 int를 반환. return 문을 명시적으로 사용하지 않아도 됨.
@@ -80,9 +80,9 @@ a1.getWeight().compareTo(a2.getWeigth()); // 람다의 반환값에 해당하는
 - 람다 표현식은 파라미터 타입을 추정할 수 있는 경우에는 타입을 생략할 수 있으며, 결과 타입은 항상 문맥으로부터 추정된다.  [가장빨리만나는자바8, 29P]
 - ​
 
-### 3.2 어디에, 어떻게 람다를 사용할까?
+## 3.2 어디에, 어떻게 람다를 사용할까?
 
-#### 함수형인터페이스
+### 함수형인터페이스
 
 정확히 하나의 추상 메서드를 지정하는 인터페이스
 
@@ -117,9 +117,9 @@ Runnable r2 = new Runnable() {
 
 
 
-### 3.4 함수형 인터페이스 사용
+## 3.4 함수형 인터페이스 사용
 
-#### 자바8의 대표적 함수형 인터페이스
+### 자바8의 대표적 함수형 인터페이스
 
 | 함수형인터페이스            | 함수디스크립터           |
 | ------------------- | ----------------- |
@@ -135,7 +135,7 @@ Runnable r2 = new Runnable() {
 
 
 
-#### java.util.function.Predicate<T>
+### java.util.function.Predicate<T>
 
 ```java
 @FunctionalInterface
@@ -159,7 +159,7 @@ List<String> nonEmpty = filter(listOfStrings, nonEmptyStringPredicate);
 
 
 
-#### java.util.function.consumer<T>
+### java.util.function.consumer<T>
 
 ```java
 @FunctionInterface
@@ -181,7 +181,7 @@ forEach(
 
 
 
-#### java.util.function.Function<T, R>
+### java.util.function.Function<T, R>
 
 ```java
 @FunctionInterface
