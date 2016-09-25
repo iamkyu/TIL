@@ -146,10 +146,10 @@ $ cd target/
 $ java -jar my-slipp-1.0.jar &
 
 # 백그라운드로 실행되는 서버 PID 확인
-$ ps -ef | grep java
+$ ps -ef | grep "java"
 
 # 백그라운드로 실행되는 서버 종료
-$ kill -[your-server-pid] $PID
+kill -9 [your-pid-nummber]
 ```
 
 *만약 공유기에 물려 있는 서버일 경우 공유기 설정에서 포트포워딩을 설정해줘야 외부에서도 해당 서버로 접근 가능하다.
