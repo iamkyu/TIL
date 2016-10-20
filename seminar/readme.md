@@ -2,7 +2,7 @@
 
 ## Spring Camp 2016
 > - [http://www.springcamp.io](http://www.springcamp.io)
-> - 4월 30일 (토) 10시 00분 ~ 19시 00분	
+> - 4월 30일 (토) 10시 00분 ~ 19시 00분
 > - 서울 광화문 더케이트윈타워 A동 11층
 
 ## 신림 프로그래머 공개 세미나 2016
@@ -45,7 +45,26 @@
 > - 9월 3일 (토) 12시 30분 ~ 17시 30분
 > - 토즈 선릉점
 
-## Code States J2S 미니컨퍼런스
-> - [https://www.facebook.com/events/1644957542488207/]()
-> - 9월 10일 (토) 10시 00분 ~ 22시 00분
-> - 마루 180
+## Spring @Async
+> - 토비의 스프링 저자 이일민님의 미니 세미나
+> - 10월 15일 (토) 10시 00분 ~ 13시 00분
+> - 성수동 커피라디오 아지트
+
+## 네이버 Deview 2016
+
+> - [https://deview.kr/2016/](https://deview.kr/2016/)
+> - 10월 24일 (월) - 10월 25(화)
+> - 코엑스
+
+## GDG DevFest Seoul 2016
+
+> - [https://festi.kr/festi/gdg-korea-2016-devfest-seoul/](https://festi.kr/festi/gdg-korea-2016-devfest-seoul/)
+> - 2016년 11월 5일 (토) 11:00 ~ 17:50
+> - 서울대학교 GCP 글로벌컨벤션플라자
+
+## 2016 서울  JetBrains Night
+
+> - [https://www.jetbrains.com/languages/kr/jetbrains-night-2016/](https://www.jetbrains.com/languages/kr/jetbrains-night-2016/)
+> - 2016년 11월 24일 (목) 17:45 ~ 22:00
+> - 스포타임 (서울특별시 강남대로 213)
+
