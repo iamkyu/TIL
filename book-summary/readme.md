@@ -24,6 +24,7 @@
 - [x] [**객체지향의 사실과 오해. 조영호 저. 위키북스. 2015.**](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
 - [x] [**자바 객체 지향의 원리와 이해. 김종민 저. 위키북스. 2015.**](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
 - [x] [Head first object-oriented analysis and design. 맥래프린, 브렛 저. 한빛미디어. 2007.](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
+- [ ] 고급 객체지향 프로그래밍. 김수동,라현정 저. 홍릉과학출판사. 2015.
 - [ ] DDD Start! 도메인 주도 설계 구현과 핵심 개념 익히기. 최범균 저. 지앤선. 2016.
 - [ ] 도메인 주도 설계. 에릭 에반스 저. 이대엽 역. 위키북스. 2011년.
 - [x] 함수형 사고. 닐 포드 저. 김재완 역. 한빛미디어. 2016.
