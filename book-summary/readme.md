@@ -37,9 +37,10 @@
 - [x] [**객체지향의 사실과 오해. 조영호 저. 위키북스. 2015.**](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
 - [x] [**자바 객체 지향의 원리와 이해. 김종민 저. 위키북스. 2015.**](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
 - [x] [Head first object-oriented analysis and design. 맥래프린, 브렛 저. 한빛미디어. 2007.](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-books.md)
-- [ ] 고급 객체지향 프로그래밍. 김수동,라현정 저. 홍릉과학출판사. 2015.
+- [x] 고급 객체지향 프로그래밍. 김수동,라현정 저. 홍릉과학출판사. 2015.
 - [ ] [개발자가 반드시 정복해야 할 객체지향과 디자인 패턴. 최범균 저. 인투북스. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/oop-and-design-pattern.md)
 - [ ] [패턴 그리고 객체지향적 코딩의 법칙. 문우식 저. 한빛미디어. 2007.](https://github.com/iamkyu/TIL/blob/master/book-summary/pattern-and-oop.md)
+- [ ] GoF의 디자인 패턴. Gang of Four저. 프로텍미디어. 2015.
 
 ## Test/TDD
 

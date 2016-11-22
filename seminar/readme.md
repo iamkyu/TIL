@@ -68,12 +68,6 @@
 > - 11월 12일 (토) 12시 30분 ~ 17시 30분
 > - 서울 강남구 역삼동 마루 180
 
-## 삼성오픈소스컨퍼런스 2016
-
-> - [http://www.soscon.net/about.do](http://www.soscon.net/about.do)
-> - 11월 17일 (목) - 11월 18일 (금)
-> - 삼성전자 서울 R&D 캠퍼스
-
 ## 개발자, 한 달에 책 한 권 읽기 - 고급 객체지향 프로그래밍
 
 > - [http://onoffmix.com/event/82411](http://onoffmix.com/event/82411)
