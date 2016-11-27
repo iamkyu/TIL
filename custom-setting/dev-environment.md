@@ -1,4 +1,4 @@
-# 개발 환경 세팅 ('16.09.19)
+# 개발 환경 세팅 ('16.11.28)
 
 1. JDK
    - [Java SE Development Kit 6u45](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html)
@@ -38,13 +38,14 @@
 
 
 
-| 기타도구    | Window                                   | Mac                                      |
-| ------- | ---------------------------------------- | ---------------------------------------- |
-| Diff 비교 | [WinMerge](http://winmerge.org/)         | [BeyondCompare](http://www.scootersoftware.com/download.php) |
-| 터미널     | [Conmenu](https://conemu.github.io/), [Putty](http://www.putty.org/) | [iTerm](https://www.iterm2.com/), [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), [TermHere](https://itunes.apple.com/us/app/termhere/id1114363220?mt=12) |
-| API검색   | [Zeal](https://zealdocs.org/)            | [Dash](https://kapeli.com/dash)          |
-| 탐색기     | [TotalCommander](https://www.ghisler.com/) | [Forklift(유료)](http://www.binarynights.com/forklift/) |
-| PDF     | [PDF: Sumatra](http://sumatrapdfreader.org/free-pdf-reader.html) | [PDF Expert(유료)](https://readdle.com/products/pdfexpert5) |
+| 기타도구     | Window                                   | Mac                                      |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| Diff 비교  | [WinMerge](http://winmerge.org/)         | [BeyondCompare](http://www.scootersoftware.com/download.php) |
+| 터미널      | [Conmenu](https://conemu.github.io/), [Putty](http://www.putty.org/) | [iTerm](https://www.iterm2.com/), [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), [TermHere](https://itunes.apple.com/us/app/termhere/id1114363220?mt=12) |
+| API검색    | [Zeal](https://zealdocs.org/)            | [Dash](https://kapeli.com/dash)          |
+| 탐색기      | [TotalCommander](https://www.ghisler.com/) | [Forklift(유료)](http://www.binarynights.com/forklift/) |
+| PDF      | [PDF: Sumatra](http://sumatrapdfreader.org/free-pdf-reader.html) | [PDF Expert(유료)](https://readdle.com/products/pdfexpert5) |
+| API Tool | IntelliJ 내장 도구                           | [Paw(유료)](https://paw.cloud/)            |
 
 
 
