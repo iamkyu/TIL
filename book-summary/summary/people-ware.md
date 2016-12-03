@@ -66,7 +66,7 @@
 
 
 
-![people-ware-img-01](images/people-ware-img-01.jpg)
+![people-ware-img-01](../images/people-ware-img-01.jpg)
 
 http://www.ohgizmo.com/2014/04/17/common-replies-programmers-code-doesnt-work/
 

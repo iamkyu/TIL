@@ -55,7 +55,6 @@
 ### Java
 
 - [x] [성년 맞은 자바와 함께 걸어보실까요?. 마소 편집부 저. 마소인터렉티브. 2015.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/20-years-java.md)
-
 - [x] 자바의 정석. 남궁성 저. 도우출판. 2010.
 - [x] 이것이 자바다. 신용권 저. 한빛미디어. 2015
 - [x] JSP 2.2 웹 프로그래밍. 최범균 저. 가메출판. 2013.
