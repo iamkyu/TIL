@@ -1,22 +1,22 @@
 # 읽은 책들 & 읽고 싶은 책들
-**볼드체**로 표시 된 책들은 추천 서적.
+- **볼드체**로 표시 된 책들은 개인적인 추천 서적.
 
 
 
 ## IT 일반
-- [x] 누워서 읽는 알고리즘. 임백준 저. 한빛미디어(주). 2003.
-- [x] 미래를 바꾼 아홉 가지 알고리즘. 존 맥코믹 저. 민병교 역. 에이콘출판. 2013.
+- [x] [누워서 읽는 알고리즘. 임백준 저. 한빛미디어(주). 2003.](https://github.com/iamkyu/TIL/blob/master/book-summary/algorithm-in-bed.md)
+- [x] [미래를 바꾼 아홉 가지 알고리즘. 존 맥코믹 저. 민병교 역. 에이콘출판. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/nine-algorithms.md)
 - [x] 컴퓨터 동작 원리. 김종훈 저. 한빛미디어. 2004.
-- [x] 소프트웨어 장인. 산드로 만쿠소 저. 권오인 역. 길벗. 2015.
-- [x] 소프트웨어 블로그 베스트 29선. 조엘 스폴스키 저. 강유, 김기영, 허영주 역. 에이콘출판. 2006.
+- [x] [**소프트웨어 장인. 산드로 만쿠소 저. 권오인 역. 길벗. 2015.**](https://github.com/iamkyu/TIL/blob/master/book-summary/master-of-software.md)
+- [x] [소프트웨어 블로그 베스트 29선. 조엘 스폴스키 저. 강유, 김기영, 허영주 역. 에이콘출판. 2006.](https://github.com/iamkyu/TIL/blob/master/book-summary/best-software-writing-i.md)
 - [x] 모어 조엘 온 소프트웨어. 조엘 스폴스키 저. 이해일 역. 지앤선. 2009.
 - [x] 소프트스킬. 존 손메즈 저. 김태곤, 이미령 역. 길벗. 2015.
-- [x] **실용주의 프로그래머. 앤드류헌트, 데이비드 토머스 저. 김창준, 정지호 역. 인사이트. 2005.**
-- [x] 폴리글랏 프로그래밍. 임백준 저. 한빛미디어. 2014.
-- [x] 임백준의 소프트웨어 산책. 임백준 저. 한빛미디어. 2005.
+- [x] [**실용주의 프로그래머. 앤드류헌트, 데이비드 토머스 저. 김창준, 정지호 역. 인사이트. 2005.**](https://github.com/iamkyu/TIL/blob/master/book-summary/pragmatic-programmer.md)
+- [x] [폴리글랏 프로그래밍. 임백준 저. 한빛미디어. 2014.](https://github.com/iamkyu/TIL/blob/master/book-summary/polyglot-and-walk-of-software.md)
+- [x] [임백준의 소프트웨어 산책. 임백준 저. 한빛미디어. 2005.](https://github.com/iamkyu/TIL/blob/master/book-summary/polyglot-and-walk-of-software.md)
 - [x] [코딩호러의 이펙티브 프로그래밍. 제프엣우드 저. 임백준 역. 위키북스. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/effective-programming-more-than-writing-code.md)
 - [x] 훌륭한 프로그래머 되는 법. 피트 구들리프 저, 최원재 외 3명 역. 한빛미디어. 2015.
-- [x] 임백준의 대살개문. 임백준 저. 한빛미디어(주). 2016.
+- [x] 임백준의 대살개문. 임백준 저. 한빛미디어. 2016.
 
 
 
@@ -25,8 +25,8 @@
 - [ ] DDD Start! 도메인 주도 설계 구현과 핵심 개념 익히기. 최범균 저. 지앤선. 2016.
 - [ ] 도메인 주도 설계. 에릭 에반스 저. 이대엽 역. 위키북스. 2011년.
 - [x] 함수형 사고. 닐 포드 저. 김재완 역. 한빛미디어. 2016.
-- [x] [익스트림프로그래밍. 켄트벡, 신시아안드레스 저. 김창준 외 1명 역. 인사이트. 2006.](https://github.com/iamkyu/TIL/blob/master/book-summary/xp_and_scrum.md)
-- [x] [스크럼(팀의 생산성을 극대화시키는 애자일 방법론). 켄 슈와버, 마이크비들 저. 박일 외 1명 역. 인사이트. 2008.](https://github.com/iamkyu/TIL/blob/master/book-summary/xp_and_scrum.md)
+- [x] [익스트림프로그래밍. 켄트벡, 신시아안드레스 저. 김창준 외 1명 역. 인사이트. 2006.](https://github.com/iamkyu/TIL/blob/master/book-summary/xp-and-scrum.md)
+- [x] [스크럼(팀의 생산성을 극대화시키는 애자일 방법론). 켄 슈와버, 마이크비들 저. 박일 외 1명 역. 인사이트. 2008.](https://github.com/iamkyu/TIL/blob/master/book-summary/xp-and-scrum.md)
 - [x] [피플웨어. 톰 드마르코,티모시 리스터 공저. 박재호,이해영 공역. 인사이트. 2014.](https://github.com/iamkyu/TIL/blob/master/book-summary/people-ware.md)
 - [ ] 린 소프트웨어 개발. 메리 포펜딕,톰 포펜딕 공저. 김정민 외3명 역. 인사이트. 2007.
 - [x] [맨먼스 미신.  프레더릭 브룩스 저. 강중빈 역. 인사이트. 2015.](https://github.com/iamkyu/TIL/blob/master/book-summary/the_mythical_man_month.md)
@@ -45,20 +45,22 @@
 ## Test/TDD
 
 - [x] **테스트 주도개발 TDD 실천법과 도구. 채수원 저. 한빛미디어. 2010.**
-- [x] 테스트주도개발. 켄트벡 저.김창준, 강규영 역. 위키북스. 2005.
+- [x] [테스트주도개발. 켄트벡 저.김창준, 강규영 역. 위키북스. 2005.](https://github.com/iamkyu/TIL/blob/master/book-summary/test-driven-development-by-example.md)
 - [x] [TDD이야기. 신정호 외 4명 저. 한빛미디어. 2014.](https://github.com/iamkyu/TIL/blob/master/book-summary/tdd-story.md)
 - [ ] JUnit in Action. 피터 타치브, 펠리페 레미 외 2명 저. 이복연 역. 인사이트. 2011.
-- [x] NHN은 이렇게 한다 소프트웨어 품질관리. 유석문, 이세현 외 3명 저. 위키북스. 2010.
+- [x] [NHN은 이렇게 한다 소프트웨어 품질관리. 유석문, 이세현 외 3명 저. 위키북스. 2010.](https://github.com/iamkyu/TIL/blob/master/book-summary/like-nhn.md)
 
 
 ## 기술서적
 ### Java
+
+- [x] [성년 맞은 자바와 함께 걸어보실까요?. 마소 편집부 저. 마소인터렉티브. 2015.](https://github.com/iamkyu/TIL/blob/master/book-summary/20-years-java.md)
+
 - [x] 자바의 정석. 남궁성 저. 도우출판. 2010.
 - [x] 이것이 자바다. 신용권 저. 한빛미디어. 2015
 - [x] JSP 2.2 웹 프로그래밍. 최범균 저. 가메출판. 2013.
 - [x] **웹 프로그래머를 위한 서블릿 컨테이너의 이해. 최희탁 저. 한빛미디어. 2012.**
 - [ ] **토비의 스프링 3.1. 이일민 저. 에이콘출판. 2012.**
-- [x] **스프링 입문을 위한 자바 객체지향의 원리와 이해. 김종민 저. 위키북스. 2015**
 - [ ] 스프링을 이용한 Restful 웹 서비스 구축하기. 김강우 저. 한빛미디어. 2014.
 - [x] 개발자가 반드시 알아야 할 자바 성능 튜닝 이야기. 이상민 저. 인사이트. 2013.
 - [x] 자바의 신 VOL.2 : 주요 API 응용편. 이상민 저. 인사이트. 로드북. 2013.

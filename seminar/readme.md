@@ -86,9 +86,9 @@
 > - 11월 25일 (금) 12시 00분 ~ 21시 00분
 > - [삼성SDS타워 서관] 서울 송파구 신천동 지하 1층 마젤란홀 & 파스칼홀
 
-## XECon 2016
+## W3C HTML5 Conference 2016
 
-> - [https://xecon2016.xpressengine.com/](https://xecon2016.xpressengine.com/)
-> - 11월 26일 (토) 13시 00분 ~ 18시 00분
-> - 서울 상암 누리꿈스퀘어 
+> - [http://onoffmix.com/event/84378](http://onoffmix.com/event/84378)
+> - 12월 7일 (수) 9시 00분 ~ 18시 00분
+> - 코엑스
 

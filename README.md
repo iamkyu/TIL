@@ -6,6 +6,7 @@
 - [Java](https://github.com/iamkyu/TIL/tree/master/java)
 - [Markup & JavaScript](https://github.com/iamkyu/TIL/tree/master/front-end)
 - [DBMS](https://github.com/iamkyu/TIL/tree/master/database)
+- [Debugging](https://github.com/iamkyu/TIL/tree/master/debugging)
 
 ## 그 외
 
