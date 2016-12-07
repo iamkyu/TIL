@@ -11,7 +11,7 @@
 7. [[DomainDriven 정기 세미나 5회] TDD(테스트 주도 개발) 프로그래밍 삽질기 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-07-23-tdd-with-spring-boot.md)
 8. [GDG WebTech Workshop: 측정하는 놈, 로딩하는 놈, 그리는 놈 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-08-27-gdg-web-tech-workshop.md)
 9. [2016년 상반기 소프트웨어 캠퍼스 강사 스터디 4기 발표회 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-09-03-software-campus.md)
-10. [Spring @Async 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016-10-15-aync-spring-with-toby.md)
+10. [Spring @Async 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-10-15-aync-spring-with-toby.md)
 11. [네이버 Deview 2016](https://deview.kr/2016/)
 12. [GDG DevFest Seoul 2016 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-11-05-gdg-devfest-2016.md)
 13. [개발자를 위한 공감 세미나 : 13번째 이야기 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-11-12-developers-sympathy-13th.md)

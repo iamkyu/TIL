@@ -5,9 +5,9 @@
 - [강의자료 링크]()
 
 
-![2016-10-15-aync-spring-with-toby-img01](images/2016-10-15-aync-spring-with-toby-img01.jpg)
+![2016-10-15-aync-spring-with-toby-img01](../images/2016-10-15-aync-spring-with-toby-img01.jpg)
 
- ![2016-10-15-aync-spring-with-toby-img02](images/2016-10-15-aync-spring-with-toby-img02.jpg)
+ ![2016-10-15-aync-spring-with-toby-img02](../images/2016-10-15-aync-spring-with-toby-img02.jpg)
 
 
 
