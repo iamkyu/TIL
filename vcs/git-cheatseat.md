@@ -4,6 +4,24 @@
 
 
 
+## git version upgrade
+
+```shell
+$ git --version
+$ brew upgrade git
+$ which git
+# 경로가 /usr/bin/git인 경우,  Xcode와 함께 설치 된 Git을 사용. 따라서 참조 경로 변경
+# 홈디렉토리에서 .bashrc 또는 .bash_profile
+
+$ sudo vim .bash_profile
+# 아래 path를 추가
+# export PATH="/usr/local/bin:/usr/bin/git:/usr/bin:/usr/local/sbin:$PATH"
+
+$ source .bash_profile
+```
+
+
+
 ## push 명령시 default 브랜치 지정
 
 - 현재 설정을 확인
