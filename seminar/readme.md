@@ -1,6 +1,14 @@
-# 2016 세미나 참석
+# 세미나 참석
 
 **[후기]**라는 단어가 붙은 링크는 내용 정리로 링크, 그 외는 홈페이지 링크
+
+# 2017
+
+1. [개발자, 한 달에 책 한 권 읽기 - 생각하는 프로그래밍](http://onoffmix.com/event/87231)
+
+
+
+# 2016
 
 1. [Spring Camp 2016 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-04-30-springcamp2016.md)
 2. [신림 프로그래머 공개 세미나 2016 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-06-18-sillim-2016.md)
@@ -19,3 +27,4 @@
 15. [2016 서울  JetBrains Night 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-11-24-jetbrains-night-2016.md)
 16. [RT:FM, 나는프로그래머다 컨퍼런스 2016 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-11-25-i-am-programmer.md)
 17. [W3C HTML5 Conference 2016 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2016/2016-12-07-w3c-html5-conf.md)
+18. [개발자, 한 달에 책 한 권 읽기 - GoF의 디자인 패턴](http://onoffmix.com/event/84776)

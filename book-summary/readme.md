@@ -17,6 +17,8 @@
 - [x] [코딩호러의 이펙티브 프로그래밍. 제프엣우드 저. 임백준 역. 위키북스. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/effective-programming-more-than-writing-code.md)
 - [x] 훌륭한 프로그래머 되는 법. 피트 구들리프 저, 최원재 외 3명 역. 한빛미디어. 2015.
 - [x] 임백준의 대살개문. 임백준 저. 한빛미디어. 2016.
+- [ ] 생각하는 프로그래밍. 존벤틀리 저. 윤성준, 조상민 역. 인사이트. 2013.
+- [ ] The Nature of Software Development. 론제프리스 저. 이기곤 역. 한빛미디어. 2016
 
 
 
@@ -24,7 +26,7 @@
 
 - [ ] DDD Start! 도메인 주도 설계 구현과 핵심 개념 익히기. 최범균 저. 지앤선. 2016.
 - [ ] 도메인 주도 설계. 에릭 에반스 저. 이대엽 역. 위키북스. 2011년.
-- [x] 함수형 사고. 닐 포드 저. 김재완 역. 한빛미디어. 2016.
+- [ ] 함수형 사고. 닐 포드 저. 김재완 역. 한빛미디어. 2016.
 - [x] [익스트림프로그래밍. 켄트벡, 신시아안드레스 저. 김창준 외 1명 역. 인사이트. 2006.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/xp-and-scrum.md)
 - [x] [스크럼(팀의 생산성을 극대화시키는 애자일 방법론). 켄 슈와버, 마이크비들 저. 박일 외 1명 역. 인사이트. 2008.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/xp-and-scrum.md)
 - [x] [피플웨어. 톰 드마르코,티모시 리스터 공저. 박재호,이해영 공역. 인사이트. 2014.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/people-ware.md)
@@ -42,7 +44,7 @@
 - [ ] [패턴 그리고 객체지향적 코딩의 법칙. 문우식 저. 한빛미디어. 2007.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/pattern-and-oop.md)
 - [ ] GoF의 디자인 패턴. Gang of Four저. 프로텍미디어. 2015.
 
-## Test/TDD
+## Test/QA
 
 - [x] **테스트 주도개발 TDD 실천법과 도구. 채수원 저. 한빛미디어. 2010.**
 - [x] [테스트주도개발. 켄트벡 저.김창준, 강규영 역. 위키북스. 2005.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/test-driven-development-by-example.md)
@@ -64,11 +66,11 @@
 - [x] 개발자가 반드시 알아야 할 자바 성능 튜닝 이야기. 이상민 저. 인사이트. 2013.
 - [x] 자바의 신 VOL.2 : 주요 API 응용편. 이상민 저. 인사이트. 로드북. 2013.
 - [x] 자바로 배우는 쉬운 자료구조. 이지영 저. 한빛아카데미. 2013.
-- [x] Head First Servlet & JSP. 케이시 시에라 외 2명 저. 김종호 역. 한빛미디어. 2009.
+- [x] **Head First Servlet & JSP. 케이시 시에라 외 2명 저. 김종호 역. 한빛미디어. 2009.**
 - [ ] 이펙티브 자바. 조슈아블로크 저. 이병준 역. 인사이트. 2014.
 - [x] 자바 ORM 표준 JPA 프로그래밍. 김영한 저. 에이콘출판. 2015.
 - [x] 자바 프로그래밍 면접 이렇게 준비한다. 노앨마크엄 저. 정원천 역. 한빛미디어. 2015.
-- [ ] 자바웹프로그래밍 NEXT Step. 박재성 저. 로드북. 2016.
+- [ ] **자바웹프로그래밍 NEXT Step. 박재성 저. 로드북. 2016.**
 - [ ] 자바8인액션. 라울 외 2명 저. 우정은 역. 한빛미디어. 2015.
 - [ ] 가장 빨리 만나는 자바8. 카이호스트만 저. 신경근 역. 길벗. 2014.
 - [x] 네이버를 만든 기술, 읽으면서 배운다 자바편. 강경태 외 11명 저. 위키북스. 2015.
@@ -97,6 +99,7 @@
 - [x] [프로가 되기 위한 웹 기술 입문. 고모리 유스케 저. 김정환 역. 위키북스. 2012.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/web-tech-for-pro.md)
 - [ ] 성공으로 이끄는 팀 개발 실천 기술. 이케다 타카후미 외 2명 저. 김완섭 역. 제이펍. 2014.
 - [ ] 일관성 있는 웹 서비스 인터페이스 설계를 위한 REST API 디자인 규칙. 마크 마세 저. 권원상 외 1명 역. 한빛미디어. 2012
+- [ ] 완벽한 IT 인프라 구축을 위한 Docker. 아사시호 저. 신은화 역. 정보문화사. 2016.
 
 
 
@@ -111,8 +114,14 @@
 - [ ] 안전한 웹을 위한 코딩 한줄의 정석. Hiroshi Tokumaru 저. 박건태,신대호 공역. 로드북. 2012.
 
 
+### DATABASE
+
+- [ ] 원리부터 배우는 관계형 데이터베이스 실전 입문 . 오쿠노미키야 저. 성창규 역. 위키북스. 2016
+- [ ] 대용량 데이터베이스 솔루션1. 이화식 저. 엔코아컨설팅. 1996
+- [ ] 대용량 데이터베이스 솔루션2. 이화식 저. 엔코아컨설팅. 1996
 
 ### ETC
+
 - [x] [자바 세상의 빌드를 이끄는 메이븐. 박재성 저. 한빛미디어. 2011.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/maven-book.md)
 - [x] 프로 Git 2판. 스캇 샤콘, 벤 스트라웁 저. 박창우 외 2명 역. 인사이트. 2016.
 - [ ] 리팩토링. 마틴파울러 저. 김지원 역. 한빛미디어. 2012.
