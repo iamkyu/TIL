@@ -4,7 +4,8 @@
 
 # 2017
 
-1. [개발자, 한 달에 책 한 권 읽기 - 생각하는 프로그래밍](http://onoffmix.com/event/87231)
+1. [AWSKRUG 신년 콘퍼런스 - re:Invent 특집](http://onoffmix.com/event/84915)
+2. [개발자, 한 달에 책 한 권 읽기 - 생각하는 프로그래밍](http://onoffmix.com/event/87231)
 
 
 
