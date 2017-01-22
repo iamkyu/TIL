@@ -17,8 +17,9 @@
 - [x] [코딩호러의 이펙티브 프로그래밍. 제프엣우드 저. 임백준 역. 위키북스. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/effective-programming-more-than-writing-code.md)
 - [x] 훌륭한 프로그래머 되는 법. 피트 구들리프 저, 최원재 외 3명 역. 한빛미디어. 2015.
 - [x] 임백준의 대살개문. 임백준 저. 한빛미디어. 2016.
-- [ ] 생각하는 프로그래밍. 존벤틀리 저. 윤성준, 조상민 역. 인사이트. 2013.
-- [ ] The Nature of Software Development. 론제프리스 저. 이기곤 역. 한빛미디어. 2016
+- [x] [생각하는 프로그래밍. 존벤틀리 저. 윤성준, 조상민 역. 인사이트. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/programming-pearls.md)
+- [x] The Nature of Software Development. 론제프리스 저. 이기곤 역. 한빛미디어. 2016
+- [ ] 프로그래밍심리학. 제랄드 M. 와인버그 저. 조상민 역. 인사이트. 2014
 
 
 
@@ -43,6 +44,7 @@
 - [ ] [개발자가 반드시 정복해야 할 객체지향과 디자인 패턴. 최범균 저. 인투북스. 2013.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/oop-and-design-pattern.md)
 - [ ] [패턴 그리고 객체지향적 코딩의 법칙. 문우식 저. 한빛미디어. 2007.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/pattern-and-oop.md)
 - [ ] GoF의 디자인 패턴. Gang of Four저. 프로텍미디어. 2015.
+- [ ] JAVA 언어로 배우는 디자인 패턴 입문. 유키 히로시 저. 이규흥 역. 영진닷컴. 2008.
 
 ## Test/QA
 
@@ -70,7 +72,7 @@
 - [ ] 이펙티브 자바. 조슈아블로크 저. 이병준 역. 인사이트. 2014.
 - [x] 자바 ORM 표준 JPA 프로그래밍. 김영한 저. 에이콘출판. 2015.
 - [x] 자바 프로그래밍 면접 이렇게 준비한다. 노앨마크엄 저. 정원천 역. 한빛미디어. 2015.
-- [ ] **자바웹프로그래밍 NEXT Step. 박재성 저. 로드북. 2016.**
+- [x] **자바웹프로그래밍 NEXT Step. 박재성 저. 로드북. 2016.**
 - [ ] 자바8인액션. 라울 외 2명 저. 우정은 역. 한빛미디어. 2015.
 - [ ] 가장 빨리 만나는 자바8. 카이호스트만 저. 신경근 역. 길벗. 2014.
 - [x] 네이버를 만든 기술, 읽으면서 배운다 자바편. 강경태 외 11명 저. 위키북스. 2015.
@@ -98,9 +100,13 @@
 - [ ] 웹 개발자를 위한 웹을 지탱하는 기술. 야마모토 요헤이 저. 김성훈 역. 멘토르. 2011.
 - [x] [프로가 되기 위한 웹 기술 입문. 고모리 유스케 저. 김정환 역. 위키북스. 2012.](https://github.com/iamkyu/TIL/blob/master/book-summary/summary/web-tech-for-pro.md)
 - [ ] 성공으로 이끄는 팀 개발 실천 기술. 이케다 타카후미 외 2명 저. 김완섭 역. 제이펍. 2014.
-- [ ] 일관성 있는 웹 서비스 인터페이스 설계를 위한 REST API 디자인 규칙. 마크 마세 저. 권원상 외 1명 역. 한빛미디어. 2012
+- [ ] 일관성 있는 웹 서비스 인터페이스 설계를 위한 REST API 디자인 규칙. 마크 마세 저. 권원상 외 1명 역. 한빛미디어. 2012.
 - [ ] 완벽한 IT 인프라 구축을 위한 Docker. 아사시호 저. 신은화 역. 정보문화사. 2016.
 
+
+### OS
+
+- [x] 리눅스 커맨드라인 완벽 입문서. 윌리엄 E. 샤츠 주니어 저. 이종우 외 1명 역. 비제이퍼블릭. 2013
 
 
 ### CODE
