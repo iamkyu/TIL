@@ -7,6 +7,9 @@
 1. [AWSKRUG 신년 콘퍼런스 - re:Invent 특집](http://onoffmix.com/event/84915)
 2. [개발자, 한 달에 책 한 권 읽기 - 생각하는 프로그래밍](http://onoffmix.com/event/87231)
 3. [2017 이베이코리아 eCommerce 컨퍼런스 후기](https://github.com/iamkyu/TIL/blob/master/seminar/2017/2017-02-16-ecommerce-con.md)
+4. [개발자, 한 달에 책 한 권 읽기 - 테스트주도개발](http://onoffmix.com/event/92305)
+5. [아마존 AWSomeday - Tech](https://aws.amazon.com/ko/events/awsome-day/seoul-06-tech/)
+6. [SPRING CAMP 2017](http://onoffmix.com/event/92984)
 
 
 
