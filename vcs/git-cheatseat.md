@@ -88,5 +88,6 @@ $ git stash save "Message"
 $ git stash pop
 $ git stash apply stash@{0}
 $ git stash drop stash@{0}
+$ git pull --rebase --autostash // 작업중인던 내용을 stash 하고 pull --rebase 진행 후 자동 되돌림
 ```
 
