@@ -2,7 +2,7 @@
 
 - Toby Lee님 세미나
 - 2016년 10월 15일(토) 10:00 ~ 13:00 / 성수동 커피라디오 아지트
-- [강의자료 링크]()
+- [발표자료](https://docs.com/toby-lee/9725)
 
 
 ![2016-10-15-aync-spring-with-toby-img01](../images/2016-10-15-aync-spring-with-toby-img01.jpg)
