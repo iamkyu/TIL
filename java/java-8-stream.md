@@ -23,12 +23,12 @@ Java8 이 2014년 3월에 릴리즈 되었으니 벌써 1년이 훌쩍 넘었다
 
 자바8 이하에서 요구 사항을 구현한 소스 코드의 예는 다음과 같다.
 
-```
+```java
 List<Dish> lowCaloricDishes = new ArrayList<>();
 
 // 칼로리가 400이하인 메뉴만 가지고 온다.
-for (Dish dish : menuList) {
-    if (dish.getCalories() >= 400) {
+for (Dish dish : menu) {
+    if (dish.getCalories() <= 400) {
         lowCaloricDishes.add(dish);
     }
 }
@@ -43,8 +43,8 @@ Collections.sort(lowCaloricDishes, new Comparator<Dish>() {
 
 // 요리 이름만 가지고 온다.
 List<String> lowCaloricDishesName = new ArrayList<>();
-for(Dish lowCaloricdish : lowCaloricDishes){
-    lowCaloricDishesName.add(lowCaloricdish.getName());
+for(Dish lowCaloricDish : lowCaloricDishes){
+    lowCaloricDishesName.add(lowCaloricDish.getName());
 }
 
 // 상위 칼로리 음식 3개를 출력
@@ -54,13 +54,13 @@ System.out.println(lowCaloricLimit3DishesName);
 
 위의 코드를 자바 8의 `Stream` API를 사용해서 나타낸다면
 
-```
+```java
 List<String> lowCaloricDishesName = menu.stream()
-	.filter(d -> d.getCalories() <400)
-	.sorted(comparing(Dish::getCalories))
-	.map(Dish::getName)
-	.colloct(toList());
-	
-System.out.println(lowCaloricDishesName);
+        .filter(d -> d.getCalories() <= 400)
+        .sorted(comparing(Dish::getCalories))
+        .map(Dish::getName)
+        .limit(3)
+        .collect(toList());
 
+System.out.println(lowCaloricDishesName);
 ```
