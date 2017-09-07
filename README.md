@@ -44,5 +44,6 @@
 - [npm-cannot-find-module-xxx](npm-cannot-find-module-xxx/npm-cannot-find-module-xxx.md)
 - [object-calisthenics](object-calisthenics/object-calisthenics.md)
 - [oracle-count-and-case](oracle-count-and-case/oracle-count-and-case.md)
+- [software-testing-types](software-testing-types/software-testing-types.md)
 - [transaction-isolation-level](transaction-isolation-level/transaction-isolation-level.md)
 - [unittest-and-integrationtest](unittest-and-integrationtest/unittest-and-integrationtest.md)
