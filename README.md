@@ -1,4 +1,13 @@
 # Today I Learned
+#### How to Use
+
+1. 해당 저장소를 로컬로 내려 받습니다. `$ git clone https://github.com/iamkyu/TIL.git`
+2. VIM으로 README.md 파일을 조회합니다. `vim README.md`
+3. 찾고 싶은 키워드를 검색합니다. `/{키워드}`
+4. 해당 라인의 파일명으로 커서를 옮긴 후 `g f`
+5. 내용을 확인 한 후에는 `<C-o>` 커맨드를 입력하면 README 로 돌아갈 수 있습니다.
+
+
 
 ## Favorite
 - [books](books/books.md)
