@@ -76,7 +76,7 @@ $ git checkout --filename.java #특정 파일 수정사항 폐기
 $ git reset --hard #저장되지 않은 모든 수정사항 폐기
 $ git reset commitid #특정 커밋 제외
 $ git clean -fd #저장되지 않은 모든 파일 삭제
-$ git revert commitid #이전 작업을 삭제하되 커밋 히스토리는 그대로 유지
+$ git revert commitid 
 ```
 
 
@@ -91,3 +91,14 @@ $ git stash drop stash@{0}
 $ git pull --rebase --autostash // 작업중인던 내용을 stash 하고 pull --rebase 진행 후 자동 되돌림
 ```
 
+
+
+## log
+
+```shell
+# 커밋 히스토리 포맷팅
+$ git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+# 두 브랜치 사이의 다른 커밋 조회
+$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative upstream/develop..origin/develop
+```
