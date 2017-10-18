@@ -46,13 +46,25 @@ $ git config --global push.default current
 
 ```shell
 $ git branch --list | -a | --remotes
-$ git fetch #원격브랜치목록 최신화
+
+#원격브랜치목록 최신화
+$ git fetch
 $ git checkout --track -b video-lessons origin/video-lessons 
-$ git checkout -b newbranch #새로운 로컬브랜치 생성
-$ git remote -v #현재 저장소에 연결된 원격 저장소
-$ git branch --delete localbrnachname #로컬브랜치삭제
-$ git push --delete origin remotebranchname #원격브랜치삭제
-$ git push --set-upstream origin master #원격저장소의 업스트림 브랜치 지정
+
+#새로운 로컬브랜치 생성
+$ git checkout -b newbranch
+
+#현재 저장소에 연결된 원격 저장소
+$ git remote -v
+
+#로컬브랜치삭제
+$ git branch --delete localbrnachname
+
+#원격브랜치삭제
+$ git push --delete origin remotebranchname
+
+#원격저장소의 업스트림 브랜치 지정
+$ git push --set-upstream origin master
 ```
 
 
@@ -60,11 +72,20 @@ $ git push --set-upstream origin master #원격저장소의 업스트림 브랜�
 ## stage
 
 ```shell
-$ git add <directory_name>/* #특정 디렉토리의 파일 모두 스테이징
-$ git add *.java #특정 확장자 파일 모두 스테이징
-$ git add --update #git에 기록된 적 있는 파일 중 업데이트 된 파일을 스테이징
-$ git reset HEAD filename.java #스테이지에서 특정 파일 제외
-$ git add -all | git commit --amend #기존 커밋 업데이트
+#특정 디렉토리의 파일 모두 스테이징
+$ git add <directory_name>/*
+
+#특정 확장자 파일 모두 스테이징
+$ git add *.java
+
+#git에 기록된 적 있는 파일 중 업데이트 된 파일을 스테이징
+$ git add --update
+
+#스테이지에서 특정 파일 제외
+$ git reset HEAD filename.java
+
+#기존 커밋 업데이트
+$ git add -all | git commit --amend
 ```
 
 
@@ -72,10 +93,19 @@ $ git add -all | git commit --amend #기존 커밋 업데이트
 ## reset
 
 ```shell
-$ git checkout --filename.java #특정 파일 수정사항 폐기
-$ git reset --hard #저장되지 않은 모든 수정사항 폐기
-$ git reset commitid #특정 커밋 제외
-$ git clean -fd #저장되지 않은 모든 파일 삭제
+#특정 파일 수정사항 폐기
+$ git checkout --filename.java
+
+#저장되지 않은 모든 수정사항 폐기
+$ git reset --hard
+
+#특정 커밋 제외
+$ git reset commitid
+
+#저장되지 않은 모든 파일 삭제
+$ git clean -fd
+
+# 특정 커밋 되돌리는 커밋 생성
 $ git revert commitid 
 ```
 
@@ -102,3 +132,4 @@ $ git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 # 두 브랜치 사이의 다른 커밋 조회
 $ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative upstream/develop..origin/develop
 ```
+
