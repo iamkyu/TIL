@@ -17,6 +17,7 @@
 
 ## List
 - [chrome-devtools-blackboxing-setting](chrome-devtools-blackboxing-setting/chrome-devtools-blackboxing-setting.md)
+- [constant-time-algorithm](constant-time-algorithm/constant-time-algorithm.md)
 - [css-text-style](css-text-style/css-text-style.md)
 - [css-transform](css-transform/css-transform.md)
 - [docker-mysql-quickstart](docker-mysql-quickstart/docker-mysql-quickstart.md)
