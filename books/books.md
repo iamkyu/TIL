@@ -1,74 +1,40 @@
 # Books
+읽은 책을 간략히 정리.
 
-개인적으로 인상 깊게 읽었던 책 목록.
-
-## 일반
-
-- [x] [소프트웨어 장인. 산드로 만쿠소 저. 권오인 역. 길벗. 2015.](summary/master-of-software.md)
-- [x] [생각하는 프로그래밍. 존벤틀리 저. 윤성준, 조상민 역. 인사이트. 2013.](summary/programming-pearls.md)
-- [x] 코드컴플리트2. 스티브 맥코넬 저. 서우석 역. 정보문화사. 2005.
-- [x] 클린코드. 로버트마틴 저. 박재호, 이해영 역, 인사이트. 2013. 
-- [x] [읽기 좋은 코드가 좋은 코드다. 더스틴보즈웰, 트레버파우커 저. 임백준 역. 한빛미디어. 2012.](summary/art-of-readable-code.md)
-- [x] [코딩을 지탱하는 기술. 니시오 히로카즈 저. 김완섭 역. 비제이퍼블릭. 2013.](summary/coding-technology.md)
-- [x] [프로그래머의 길, 멘토에게 묻다. 데이브 후버, 애디웨일 오시나이 저. 강중빈 역. 인사이트. 2010.](summary/apprenticeship-patterns.md)
-
-
-
-## 개발 문화/방법론
-
-- [ ] 클린소프트웨어. 로버트 C 마틴 저. 이용원 역. 제이펍. 2017.
-
-
-## 분석/설계
-
-- [x] [객체지향의 사실과 오해. 조영호 저. 위키북스. 2015.](summary/oop-books.md)
-- [x] [자바 객체 지향의 원리와 이해. 김종민 저. 위키북스. 2015.](summary/oop-books.md)
-- [x] [Head first object-oriented analysis and design. 맥래프린, 브렛 저. 한빛미디어. 2007.](summary/oop-books.md)
-- [x] [개발자가 반드시 정복해야 할 객체지향과 디자인 패턴. 최범균 저. 인투북스. 2013.](summary/oop-and-design-pattern.md)
-- [x] 루비로 배우는 객체지향 디자인. 샌디 메츠 저. 박건하 역. 인사이트. 2014.
-- [x] 리팩토링. 마틴파울러 저. 김지원 역. 한빛미디어. 2012.
-
-## Quality Assurance
-
-- [x] 테스트 주도개발 TDD 실천법과 도구. 채수원 저. 한빛미디어. 2010.
-- [x] [테스트주도개발. 켄트벡 저.김창준, 강규영 역. 위키북스. 2005.](summary/test-driven-development-by-example.md)
-- [x] [TDD 이야기. 신정호 외 4명 저. 한빛미디어. 2014.](summary/tdd-story.md)
-
-
-## 기술서적
-### Java
-
-- [x] 웹 프로그래머를 위한 서블릿 컨테이너의 이해. 최희탁 저. 한빛미디어. 2012.
-- [x] 토비의 스프링 3.1. 이일민 저. 에이콘출판. 2012.
-- [x] Head First Servlet & JSP. 케이시 시에라 외 2명 저. 김종호 역. 한빛미디어. 2009.
-- [x] 이펙티브 자바. 조슈아블로크 저. 이병준 역. 인사이트. 2014.
-- [x] 자바웹프로그래밍 NEXT Step. 박재성 저. 로드북. 2016.
-- [ ] 자바8인액션. 라울 외 2명 저. 우정은 역. 한빛미디어. 2015.
-- [x] 네이버를 만든 기술, 읽으면서 배운다 자바편. 강경태 외 11명 저. 위키북스. 2015.
-
-
-### Front-End
-
-- [ ] .
-
-
-
-### NETWORK / INFRA
-
-- [x] HTTP 완벽 가이드. 데이빗 고울리, 브라이언 토티, 마조리 세이어 외 2명 저. 이응준, 정상일 역.  인사이트. 2014.
-- [x] 웹 개발자를 위한 웹을 지탱하는 기술. 야마모토 요헤이 저. 김성훈 역. 멘토르. 2011.
-
-
-### OS
-
-- [ ] .
-
-
-### DATABASE
-
-- [ ] .
-
-### ETC
-
-- [x] 프로 Git 2판. 스캇 샤콘, 벤 스트라웁 저. 박창우 외 2명 역. 인사이트. 2016.
-
+## 목록 (가나다순)
+- [ ] HTTP 완벽 가이드. 데이빗 고울리 외. 이응준 외. 인사이트. 2014
+- [x] [JUnit in Action. 피터 타치브 외. 이복연 역. 인사이트. 2011](summary/junit-in-action.md)
+- [x] [NHN은 이렇게 한다 소프트웨어 품질관리. 유석문 외. 위키북스. 2010](summary/like-nhn.md)
+- [x] [TDD에 대한 오해와 진실 TDD 이야기. 신정호 외. 한빛미디어. 2014](summary/tdd-story.md)
+- [x] [객체 지향과 디자인 패턴. 최범균. 인투북스. 2013](summary/oop-and-design-pattern.md)
+- [x] [객체지향의 사실과 오해. 조영호. 위키북스. 2015](summary/the-essence-of-oo.md)
+- [x] [맨먼스 미신. 프레더릭 브룩서. 강중빈 역. 인사이트. 2015](summary/the-mythical-man-month.md)
+- [x] [미래를 바꾼 아홉 가지 알고리즘. 존 맥코믹. 민병교 역. 에이콘출판. 2013](summary/nine-algorithms.md)
+- [x] [생각하는프로그래밍. 존 벤틀리. 윤성준 외 역. 인사이트. 2013](summary/programming-pearls.md)
+- [x] [소프트웨어 장인. 산드로 만쿠소. 권오인 역. 길벗. 2015](summary/master-of-software.md)
+- [x] [스크럼. 켄 슈와버 외. 박일 외 역. 인사이트. 2008](summary/xp-and-scrum.md)
+- [x] [실용주의 프로그래머. 앤드류 헌트외. 김창준 외 역. 인사이트. 2014](summary/pragmatic-programmer.md)
+- [x] [임백준의 소프트웨어 산책. 임백준. 한빛미디어. 2005](summary/polyglot-and-walk-of-software.md)
+- [x] [자바 세상의 빌드를 이끄는 메이븐. 박재성. 한빛미디어. 2011](summary/maven-book.md)
+- [x] [자바웹프로그래밍 NEXT Step. 박재성. 로드북. 2016](https://github.com/iamkyu/jwp-basic)
+- [x] [클린코더. 로버트마틴. 정희종 역. 에이콘출판. 2016](summary/the-clean-coder.md)
+- [x] [테스트 주도 개발. 켄트벡. 김창준 외 역. 인사이트. 2014](summary/test-driven-development-by-example.md)
+- [x] [토비의 스프링 3.1. 이일민. 에이콘출판. 2012](https://github.com/iamkyu/toby-spring)
+- [x] [패턴 그리고 객체지향적 코딩의 법칙. 문우식. 한빛미디어. 2007](summary/pattern-and-oop.md)
+- [x] [폴리글랏 프로그래밍. 임백준. 한빛미디어. 2014](summary/polyglot-and-walk-of-software.md)
+- [x] [프로가 되기 위한 웹 기술 입문. 고모리 유스케. 김정환 역. 위키북스. 2012](summary/web-tech-for-pro.md)
+- [x] [피플웨어. 톰 디마르코 외. 박재호 외 역. 인사이트. 2014](summary/people-ware.md)
+- [ ] 루비로 배우는 객체지향 디자인. 샌디 메츠. 박건하 역. 인사이트. 2014
+- [ ] 웹 프로그래머를 위한 서블릿 컨테이너의 이해. 최희탁. 한빛미디어. 2012
+- [ ] 코드컴플리트2. 스티브 맥코넬. 서우석 역. 정보문화사. 2005
+- [ ] 클린소프트웨어. 로버트 C 마틴. 이용원 역. 제이펍. 2017
+- [ ] 클린코드. 로버트마틴. 박재호 외 역. 인사이트. 2013 
+- [x] [누워서 읽는 알고리즘. 임백준. 한빛미디어. 2013](summary/algorithm-in-bed.md)
+- [x] [도메인 주도 설계. 에릭에반스. 이대엽 역. 위키북스. 2011](summary/ddd.md)
+- [x] [성년 맞은 자바와 함께 걸어보실까요?. 마소 편집부. 마소인터렉티브. 2015](summary/20-years-java.md)
+- [x] [소프트웨어 블로그 베스트 29선. 조엘스폴스키. 김기영 외 역. 에이콘출판. 2006](summary/best-software-writing-i.md)
+- [x] [읽기 좋은 코드가 좋은 코드다. 더스틴 보즈웰 외. 임백준 역. 한빛미디어. 2012](books/summary/art-of-readable-code.md)
+- [x] [코딩 호러의 이펙티브 프로그래밍. 제프 앳우드. 임백준 역. 위키북스. 2013](summary/effective-programming-more-than-writing-code.md)
+- [x] [코딩을 지탱하는 기술. 니시오 히로카즈. 김완섭 역. 비제이퍼블릭. 2013](summary/coding-technology.md)
+- [x] [테스트 주도 개발로 배우는 객체 지향 설계와 실천. 스티브 프리먼 외. 이대엽 역. 인사이트 출판. 2013](summary/growing-oo-software-guided-by-tests.md)
+- [x] [프로그래머의 길. 멘토에게 묻다. 데이브 외. 강중빈 역. 인사이트. 2010](summary/apprenticeship-patterns.md)
