@@ -224,3 +224,30 @@ TODO: WIP
 - 작업을 시작할 때 데이터에 대한 잠금을 획득하므로 일단 비즈니스 트랜잭션이 시작하면 동시성 제어 문제로 실패하는 경우가 거의 없음.
 
 ![오프라인 선점 잠금 - 마틴파울러 저. 엔터프라이즈 애플리케이션 아키텍처 패턴](https://user-images.githubusercontent.com/13076271/39998126-1541a80e-57c0-11e8-8700-df62c272a8d5.png)
+
+
+
+
+## 9. 도메인 모델과 BOUNDED CONTEXT
+모델은 특정한 **컨텍스트(문맥)하에서** 완전한 의미를 가짐.
+
+- 한 도메인은 다시 여러 하위 도메인으로 구분 됨.
+- 하위 도메인마다 같은 용어라도 의미가 다를 수 있음.
+- 하위 도메인마다 논리적으로 같은 존재처럼 보이지만 지칭하는 용어가 다를 수 있음.
+- 따라서 도메인을 완벽하게 표현하는 단일 모델을 만드는건 불가능함.
+
+BOUNDED CONTEXT는 모델의 경계를 결정함.
+
+- 도메인 모델 뿐 아니라 표현영역, 응용서비스, 인프라 영역 등을 모두 포함함.
+- 이상적으로 BOUNDED CONTEXT는 한 개의 논리적 모델을 가짐.
+- 용어를 기준으로 BOUNDED CONTEXT를 구분. 즉, 서로 다른 용어를 사용한다면 이 용어를 기준으로 컨텍스트를 분리할 수 있음.
+- 이상적으로 하위 도메인과 BOUNDED CONTEDXT가 일대일 관계를 가지면 좋지만 기업의 팀 조직 구조에 따라 달라질 수 있음.
+- 한 개의 BOUNDED CONTEXT에서 여러 하위 도메인을 포함하더라도 구분되는 패키지를 가지고 모델이 서로 뒤섞이지 않도록 노력해야 함.
+
+BOUNDED CONTEXT 라는건 대체 대체 크기가 얼마라는건지 조금 애매한데 박성철 이사님의 글이 꽤 도움이 됐음. - [DDD 제한적 컨텍스트와 마이크로서비스의 크기](http://blog.fupfin.com/?p=161)
+
+### BOUNDED CONTEXT 통합/관계
+![Anticorruption Layer](https://user-images.githubusercontent.com/13076271/40176730-597dd0fc-5a17-11e8-9a58-f6cd8a204dc9.png)
+
+두 BOUNDED CONTEXT가 관계를 맺을 때는 [손상 방지 계층(Anticorruption Layer)](https://docs.microsoft.com/ko-kr/azure/architecture/patterns/anti-corruption-layer)을 둬서 외부의 도메인 모델이 내 도메인 모델을 침범하지 않도록 해야 함.
+이 계층에서 두 BOUNDED CONTEXT 간의 모델 변환을 처리하면 다른 BOUNDED CONTEXT의 모델에 영향 받지 않고 내 도메인 모델을 유지할 수 있음.
