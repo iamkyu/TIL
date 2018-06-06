@@ -25,6 +25,7 @@
 - [x] [자바웹프로그래밍 NEXT Step. 박재성. 로드북. 2016](https://github.com/iamkyu/jwp-basic)
 - [x] [코딩 호러의 이펙티브 프로그래밍. 제프 앳우드. 임백준 역. 위키북스. 2013](summary/effective-programming-more-than-writing-code.md)
 - [x] [코딩을 지탱하는 기술. 니시오 히로카즈. 김완섭 역. 비제이퍼블릭. 2013](summary/coding-technology.md)
+- [x] [클린소프트웨어. 로버트 C 마틴. 이용원 역. 제이펍. 2017](summary/clean-software.md)
 - [x] [클린코더. 로버트마틴. 정희종 역. 에이콘출판. 2016](summary/the-clean-coder.md)
 - [x] [테스트 주도 개발. 켄트벡. 김창준 외 역. 인사이트. 2014](summary/test-driven-development-by-example.md)
 - [x] [테스트 주도 개발로 배우는 객체 지향 설계와 실천. 스티브 프리먼 외. 이대엽 역. 인사이트 출판. 2013](summary/growing-oo-software-guided-by-tests.md)
@@ -37,5 +38,4 @@
 - [x] 루비로 배우는 객체지향 디자인. 샌디 메츠. 박건하 역. 인사이트. 2014
 - [x] 웹 프로그래머를 위한 서블릿 컨테이너의 이해. 최희탁. 한빛미디어. 2012
 - [x] 코드컴플리트2. 스티브 맥코넬. 서우석 역. 정보문화사. 2005
-- [x] 클린소프트웨어. 로버트 C 마틴. 이용원 역. 제이펍. 2017
 - [x] 클린코드. 로버트마틴. 박재호 외 역. 인사이트. 2013 
