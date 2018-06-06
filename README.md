@@ -39,6 +39,7 @@
 - [intellij-live-templates](intellij-live-templates/intellij-live-templates.md)
 - [java-8-lamda](java-8-lamda/java-8-lamda.md)
 - [java-8-stream](java-8-stream/java-8-stream.md)
+- [java-generics](java-generics/java-generics.md)
 - [java-servlet](java-servlet/java-servlet.md)
 - [java-split](java-split/java-split.md)
 - [java-switch-and-hash](java-switch-and-hash/java-switch-and-hash.md)
