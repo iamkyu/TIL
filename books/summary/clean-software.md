@@ -4,6 +4,19 @@
 >
 > 로버트 C. 마틴. 이용원 외 2명 역. 제이펍. 2017 [[상세정보]](http://book.naver.com/bookdb/book_detail.nhn?bid=12035385)
 
+## 목차
+<!-- TOC -->
+
+- [Clean Software](#clean-software)
+    - [목차](#목차)
+    - [7. 애자일 설계란 무엇인가](#7-애자일-설계란-무엇인가)
+        - [부패하고 있는 소프트웨어의 악취](#부패하고-있는-소프트웨어의-악취)
+        - [Copy 프로그램 예제](#copy-프로그램-예제)
+    - [8. 단일 책임 원칙 (Single-Responsibility Principle)](#8-단일-책임-원칙-single-responsibility-principle)
+    - [9. 개방 폐쇄 원칙 (Open-Closed Principle)](#9-개방-폐쇄-원칙-open-closed-principle)
+        - [폐쇄는 완벽할 수 없다](#폐쇄는-완벽할-수-없다)
+
+<!-- /TOC -->
 
 
 ## 7. 애자일 설계란 무엇인가
