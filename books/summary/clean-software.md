@@ -15,6 +15,7 @@
     - [8. 단일 책임 원칙 (Single-Responsibility Principle)](#8-단일-책임-원칙-single-responsibility-principle)
     - [9. 개방 폐쇄 원칙 (Open-Closed Principle)](#9-개방-폐쇄-원칙-open-closed-principle)
         - [폐쇄는 완벽할 수 없다](#폐쇄는-완벽할-수-없다)
+    - [10. 리스코프 치환 원칙 (Liskov Substitution Principle)](#10-리스코프-치환-원칙-liskov-substitution-principle)
 
 <!-- /TOC -->
 
@@ -192,3 +193,47 @@ OCP에 완벽히 순응하기 위해서는 미래를 완벽하게 예측할 수 
     - 어떤 변경이 요구되는지 알게 됨.
 
 변화에 대한 가장 좋은 예측은 변화를 경험하는 것. 빨리 자주 Deliver 하고, 고객의 요구사항 변화에 기반하여 리팩토링을 진행. 단, BDUF를 피해야 하지만 No DUF 도 피해야 함. 기본적인 도메인 모델은 초기 단계에서 갖추려고 노력해야 함.
+
+
+
+## 10. 리스코프 치환 원칙 (Liskov Substitution Principle)
+> 서브타입은 그것의 기반타입으로 치환 가능해야 한다.
+
+![Square IS A Rectangle](https://user-images.githubusercontent.com/13076271/41410078-3e205660-7013-11e8-9851-7b2ac826f629.png)
+
+책의 예제는 직사각형과 정사각형 예제를 보여줌. '정사각형 IS-A 직사각형' 만족하는 것 같음. 직사각형에서 파생 된 정사각형이라는 서브타입을 만듬.
+
+```java
+@Test
+public void calculate_area() {
+    r.setWidth(5);
+    r.setHeight(4);
+
+    assertThat(r.getArea()).isEqualTo(20);
+}
+```
+
+- 위 테스트에서 직사각형의 가로 길이를 바꾸는 것이 세로 길이에 영향을 주지 않을 것이라 생각함.
+- 하지만 직사각형의 서브타입인 정사각형에서는 가로와 세로가 항상 같음.
+
+종종 상속은 IS-A 관계라고 함. 하지만 IS-A는 행위에 대한 것. 위 예제에서 정사각형 객체의 행위는 `calculate_area()`가 기대하는 직사각형의 행위와 일치하지 않음. 
+
+```java
+//when
+Rectangle rectangle = new Rectangle(height, width);
+rectangle.setWidth(newWidth);
+
+//then
+assert((rectangle.getWidth() == newWidth) && (rectangle.getHeight == height));
+```
+
+사용자가 정말로 기대하는 행위를 어떻게 알 수 있는가? 추정을 명시적으로 만드는 테크닉을 계약에 의한 설계<sup>design by contract</sup>라고 함. 
+
+- DBC를 통해 클래스 작성자는 그 클래스의 계약사항을 명시적으로 정함.
+- 각 메소드의 사전조건과 사후조건을 선언하는 것으로 구체화 됨.
+- 위 예에서 사후조건은 `assert((rectangle.height() == w) && (rectangle.width == oldWidth));`와 같음.
+- 파생된 객체는 기반 클래스가 받아들일 수 있는 것은 모두 받아들어야 함. 또한 모든 사후조건을 따라야 함.
+
+X가 Y의 모든 제약을 강제하지 않는다면 X는 Y보다 약하다 할 수 있는데, 직사각형 예제에서 정사각형의 사후조건은 직사각형의 사후조건보다 약함. 따라서 정사각형 클래스의 `setWidth` 메소드는 기반 클래스의 계약을 위반함.
+
+또한, 파생 클래스를 만드는 것이 기반 클래스의 변경으로 이어진다면 대개는 이 설계에 결점이 있음을 의미 함.
