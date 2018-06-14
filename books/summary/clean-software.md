@@ -237,3 +237,72 @@ assert((rectangle.getWidth() == newWidth) && (rectangle.getHeight == height));
 X가 Y의 모든 제약을 강제하지 않는다면 X는 Y보다 약하다 할 수 있는데, 직사각형 예제에서 정사각형의 사후조건은 직사각형의 사후조건보다 약함. 따라서 정사각형 클래스의 `setWidth` 메소드는 기반 클래스의 계약을 위반함.
 
 또한, 파생 클래스를 만드는 것이 기반 클래스의 변경으로 이어진다면 대개는 이 설계에 결점이 있음을 의미 함.
+
+
+
+## 11. 의존관계 역전 원칙 (Dependency Inversion Principle)
+> 상위 수준의 모듈은 하위 수준의 모듈에 의존해서는 안 된다. 둘 모두 추상화에 의존해야 한다. 추상화는 구체적인 사항에 의존해서는 안 된다. 구체적인 사항은 추상화에 의존해야 한다.
+
+상속, 캡슐화, 다형성과 같은 것들이 객체지향의 메커니즘이라고 한다면 의존관계 관리는 객체지향 디자인의 핵심이라 할 수 있음.
+
+전통적인 소프트웨어 구조에서 상위 수준의 모듈이 하위 수준의 모듈에 의존하는, 정책이 구체적인것에 의존하는 경향이 있었음. 상위 수준의 모듈은 중요한 정책 의사결정과 업무 모델을 포함하고 있는 애플리케이션의 본질인데 하위 수준의 모듈에 의존한다면 하위 수준 모듈의 변경이 상위 수준 모듈에 직접적인 영향을 미칠 수 있음.
+
+![미숙한 레이어 나누기 계획](https://user-images.githubusercontent.com/13076271/41413041-e0733348-701c-11e8-951c-9efc608bf67d.png)
+
+위 레이어 구조는 얼핏 보기에 괜찮아 보임. 하지만 다음과 같은 문제가 있음.
+- Policy 레이어가 하위 수준의 Utility 레이어의 변화에 민감함.
+- 의존성은 이행적<sup>transitive</sup>. 따라서 Policy 레이어는 Utility 레이어에 이행적으로 의존하게 됨.
+
+> 각 레이어는 잘 정의되고 제어되는 인터페이스를 통해 일관된 서비스의 집합을 제공한다.
+
+![역전된 레이어](https://user-images.githubusercontent.com/13076271/41413050-e39dc060-701c-11e8-9a44-2913889b088a.png)
+
+위 레이어 구조는 좀 더 적절함.
+- 상위 수준 레이어가 필요로 하는 서비스에 대한 인터페이스 선언.
+- 하위 수준의 레이어에서 인터페이스를 구현.
+- 인터페이스의 소유권도 역전 되며, 이 인터페이스는 어떤 문맥에서든 재사용 가능함.
+- Policy 레이어는 하위 레이어의 어떠한 변경에도 영향을 받지 않음.
+
+### Button 프로그램 예제
+```java
+class Button {
+    private Lamp lamp;
+
+    void poll() {
+        if (/* condition */) {
+            lamp.turnOn();
+        }
+    }
+}
+```
+
+의존성 역전은 한 클래스가 다른 클래스에 메시지를 보내는 장소라면 어디든 적용 가능. 위 예제에서는 Button 객체가 Lamp 객체에 강하게 의존함.
+- Button 이 Lamp 의 변경에 영향 받음.
+- Button 으로 나중에 Motor 객체를 제어할 수 있게 재사용하는 것 불가능.
+- Button 객체는 오직 Lamp 객체만 제어함.
+
+> 상위 수준의 정책이란? 애플리케이션에 내재하는 추상화이자, 구체적인 것이 변경되더라도 바뀌지 않는 진실. 시스템 안의 시스템이며, [메타포](https://ko.wikipedia.org/wiki/%EC%9D%80%EC%9C%A0)다.
+
+Button 예제에 내재하는 추상화는 '사용자로부터 켜고 쓰는 동작을 탐지해 그 동작을 대상 객체에 전한다' 임.
+
+```java
+class Button {
+    private SwitchableDevice switchableDevice;
+
+    public Button(SwitchableDevice switchableDevice) {
+        this.switchableDevice = switchableDevice;
+    }
+
+    void poll() {
+        if (/* condition */) {
+            switchableDevice.turnOn();
+        }
+    }
+}
+```
+
+- 위 코드는 Lamp 객체의 의존성을 역전시킴. 
+- SwitchableDevice 는 Button 이 어떤 것을 켜고 끄기 위한 추상 메소드를 제공, Lamp 가 구체적인 동작을 구현.
+- 인터페이스 이름을 SwitchableDevice 로 변경함으로써 Button 에 대한 의존성이 사라짐. 꼭 Button 이 아니라도 SwitchableDevice 인터페이스를 사용할 줄 알면 Lamp 를 제어할 수 있음.
+
+
