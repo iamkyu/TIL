@@ -16,6 +16,10 @@
     - [9. 개방 폐쇄 원칙 (Open-Closed Principle)](#9-개방-폐쇄-원칙-open-closed-principle)
         - [폐쇄는 완벽할 수 없다](#폐쇄는-완벽할-수-없다)
     - [10. 리스코프 치환 원칙 (Liskov Substitution Principle)](#10-리스코프-치환-원칙-liskov-substitution-principle)
+    - [11. 의존관계 역전 원칙 (Dependency Inversion Principle)](#11-의존관계-역전-원칙-dependency-inversion-principle)
+        - [Button 프로그램 예제](#button-프로그램-예제)
+    - [12. 인터페이스 분리 원칙 (Interace-Segregation Principle)](#12-인터페이스-분리-원칙-interace-segregation-principle)
+        - [보안 시스템 예제](#보안-시스템-예제)
 
 <!-- /TOC -->
 
@@ -224,14 +228,14 @@ Rectangle rectangle = new Rectangle(height, width);
 rectangle.setWidth(newWidth);
 
 //then
-assert((rectangle.getWidth() == newWidth) && (rectangle.getHeight == height));
+assertTrue((rectangle.getWidth() == newWidth) && (rectangle.getHeight == height));
 ```
 
 사용자가 정말로 기대하는 행위를 어떻게 알 수 있는가? 추정을 명시적으로 만드는 테크닉을 계약에 의한 설계<sup>design by contract</sup>라고 함. 
 
 - DBC를 통해 클래스 작성자는 그 클래스의 계약사항을 명시적으로 정함.
 - 각 메소드의 사전조건과 사후조건을 선언하는 것으로 구체화 됨.
-- 위 예에서 사후조건은 `assert((rectangle.height() == w) && (rectangle.width == oldWidth));`와 같음.
+- 위 예에서 사후조건은 `assertTrue((rectangle.getWidth() == newWidth) && (rectangle.getHeight == height))` 와 같음.
 - 파생된 객체는 기반 클래스가 받아들일 수 있는 것은 모두 받아들어야 함. 또한 모든 사후조건을 따라야 함.
 
 X가 Y의 모든 제약을 강제하지 않는다면 X는 Y보다 약하다 할 수 있는데, 직사각형 예제에서 정사각형의 사후조건은 직사각형의 사후조건보다 약함. 따라서 정사각형 클래스의 `setWidth` 메소드는 기반 클래스의 계약을 위반함.
@@ -306,3 +310,41 @@ class Button {
 - 인터페이스 이름을 SwitchableDevice 로 변경함으로써 Button 에 대한 의존성이 사라짐. 꼭 Button 이 아니라도 SwitchableDevice 인터페이스를 사용할 줄 알면 Lamp 를 제어할 수 있음.
 
 
+
+## 12. 인터페이스 분리 원칙 (Interace-Segregation Principle)
+> 클라이언트가 자신이 사용하지 않는 메소드에 의존하도록 강제되어서는 안 된다.
+
+사용하지 않는 것에 의존성을 가진다면
+- 해당 인터페이스가 변경되면 재컴파일/빌드/배포 필요.
+- 독립적인 개발/배포 불가.
+- SRP와도 연관. 한 기능에 변경이 발생하면 다른 기능을 사용하는 클라이언트들에도 영향을 미침.
+
+### 보안 시스템 예제
+Door를 열거나 잠굴 수 있는 보안 시스템이 있음. 이 시스템에 문이 열린 채로 일정 시간이 지나면 알람을 울려야 한다는 요구사항이 추가 됨.
+
+![계층 구조 제일 위의 Timer Client](https://user-images.githubusercontent.com/13076271/41531281-cea14fba-732d-11e8-966b-8427cff3015f.png)
+
+- Door 클래스가 TimerClient에 의존하게 됨. 
+- Door의 구현 클래스가 모두 타이머 기능을 필요로 하지는 않을 것임.
+- 원래 추상 Door 클래스는 제한 시간과 관련해 아무일도 하지 않음.
+
+타이머 기능을 쓰지 않는 Door의 구현 클래스가 만들어진다면 다음과 같은 코드를 작성해야 함.
+```java
+@Override
+public void timeOut() {
+    throw new UnsupportedOperationException();
+}
+```
+
+- 비대한 클래스는 클라이언트 간에 해가 되는 결합도 유발
+- 한 클라이언트가 이 비대한 클래스에 변경을 가하면, 모든 나머지가 영향을 받음
+
+서브클래스 중 하나의 이득 때문에 포함한 `timeOut()` 메소드로 인해 인터페이스가 오염 됨. 그리고 앞으로 이런 방식으로 계속해서 메소드가 추가 된다면 기반 클래스의 인터페이스를 오염시키고, 더 비대하게 만들것 임.
+
+![Door Timer Adapter](https://user-images.githubusercontent.com/13076271/41531288-d229d35a-732d-11e8-87af-bb16e854337b.png)
+
+클라이언트 입장에서 인터페이스를 분리해야 함. 위그림을 보면 Timer가 TimerClient를 사용하고, 문을 조작하는 클래스가 Door를 사용할 것임. 이처럼 클라이언트가 분리되어 있기 때문에 인터페이스도 분리된 상태로 있어야 함.
+
+![다중 상속한 Timed Door](https://user-images.githubusercontent.com/13076271/41531890-ed4ccd48-732f-11e8-8a3c-25ad2419ce4b.png)
+
+인터페이스를 분리할 수 있는 방법에는 (1) 위임을 통한 분리 (2) 다중 상속을 통한 분리 등이 있음.
