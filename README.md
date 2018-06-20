@@ -52,6 +52,7 @@
 - [jsp-page-directive-invalid-value-for-import](jsp-page-directive-invalid-value-for-import/jsp-page-directive-invalid-value-for-import.md)
 - [mariadb-autocommit-setting](mariadb-autocommit-setting/mariadb-autocommit-setting.md)
 - [mssql-auth-error](mssql-auth-error/mssql-auth-error.md)
+- [mysql-locking-reads](mysql-locking-reads/mysql-locking-reads.md)
 - [mysql-timestamp-row-generator](mysql-timestamp-row-generator/mysql-timestamp-row-generator.md)
 - [npm-cannot-find-module-xxx](npm-cannot-find-module-xxx/npm-cannot-find-module-xxx.md)
 - [object-calisthenics](object-calisthenics/object-calisthenics.md)
