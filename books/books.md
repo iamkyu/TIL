@@ -19,6 +19,7 @@
 - [x] [소프트웨어 장인. 산드로 만쿠소. 권오인 역. 길벗. 2015](summary/master-of-software.md)
 - [x] [스크럼. 켄 슈와버 외. 박일 외 역. 인사이트. 2008](summary/xp-and-scrum.md)
 - [x] [실용주의 프로그래머. 앤드류 헌트외. 김창준 외 역. 인사이트. 2014](summary/pragmatic-programmer.md)
+- [x] [이펙티브 자바. 조슈아 블로크 저. 이병준 역. 인사이트. 2014](summary/effective-java.md)
 - [x] [읽기 좋은 코드가 좋은 코드다. 더스틴 보즈웰 외. 임백준 역. 한빛미디어. 2012](books/summary/art-of-readable-code.md)
 - [x] [임백준의 소프트웨어 산책. 임백준. 한빛미디어. 2005](summary/polyglot-and-walk-of-software.md)
 - [x] [자바 세상의 빌드를 이끄는 메이븐. 박재성. 한빛미디어. 2011](summary/maven-book.md)
