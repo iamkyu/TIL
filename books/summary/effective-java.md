@@ -85,3 +85,88 @@ service.execute(() -> action());
 | Class Constructor | TreeMap<K,V>::new      | () -> new TreeMap<K,V>                             | 생성자 레퍼런스                                |
 | Array Constructor | int[]::new             | len -> new int[len]                                | 생성자 레퍼런스                                |
 
+
+
+## Item 45. 스트림을 적절하게 사용하라
+
+```java
+public class Anagrams {
+    // 자바 8 이전에 작성 된 코드
+    public static void beforeJava8(String[] args) throws IOException {
+        File dictionary = new File(args[0]);
+        int minGroupSize = Integer.parseInt(args[1]);
+        Map<String, Set<String>> groups = new HashMap<>();
+        try (Scanner s = new Scanner(dictionary)) {
+            while (s.hasNext()) {
+                String word = s.next();
+                groups.computeIfAbsent(alphabetize(word),
+                        (unused) -> new TreeSet<>()).add(word);
+            }
+        }
+
+        for (Set<String> group : groups.values()) {
+            if (group.size() >= minGroupSize) {
+                System.out.println(group.size() + ": " + group);
+            }
+        }
+    }
+    
+    // 자바 8 이후에 위 코드가 모두 스트림 코드로 대치 됨. 더욱 읽기 어려워짐.
+    public static void onlyStreamUsed(String[] args) throws IOException {
+        Path dictionary = Paths.get(args[0]);
+        int minGroupSize = Integer.parseInt(args[1]);
+
+        try (Stream<String> words = Files.lines(dictionary)) {
+            words.collect(groupingBy(word -> word.chars().sorted()
+                    .collect(StringBuilder::new, 
+                            (sb, c) -> sb.append((char) c), 
+                            StringBuilder::append).toString()))
+                    .values().stream()
+                    .filter(group -> group.size() >= minGroupSize)
+                    .map(group -> group.size() + ": " + group)
+                    .forEach(System.out::println);
+        }
+    }
+    
+    // 위 두 코드의 중간 타협점
+    public static void happyMedium(String[] args) throws IOException {
+        Path dictionary = Paths.get(args[0]);
+        int minGroupSize = Integer.parseInt(args[1]);
+
+        try (Stream<String> words = Files.lines(dictionary)) {
+            words.collect(groupingBy(word -> alphabetize(word)))
+                    .values().stream()
+                    .filter(group -> group.size() >= minGroupSize)
+                    .forEach(group -> System.out.println(group.size() + ": " + group));
+        }
+    }
+
+    private static String alphabetize(String s) {
+        char[] a = s.toCharArray();
+        Arrays.sort(a);
+        return new String(a);
+    }
+}
+```
+
+남용 된 스트림은 코드를 읽고 유지보수 하기 어렵게 만듬.
+
+- 람다에서는 파라미터의 타입이 생략되기 때문에 파라미터의 이름을 명확하게 지을 것.
+- 헬퍼 메서드에 명시적인 이름을 붙여 사용할 것.
+
+
+
+스트림을 사용하기 적절한 상황.
+
+- 연속 된 요소를 모두 동일하게 변환
+- 연속 된 요소에서 필터링 수행
+- 단일 연산을 통한 연속 된 요소의 결합 (예: 추가, 연결, 최소값 계산 등)
+- 컬렉션의 연속 된 요소를 특정 기준으로 그룹핑
+- 특정 기준을 만족하는 요소 검색
+
+
+
+스트림 파이프 라인에서는 함수 객체가 사용되는데 함수 객체에서 다음과 같은 일은 할 수 없음.
+
+- 지역 변수의 변경
+- return, break, continue or throw any checked exception
