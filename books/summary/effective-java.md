@@ -170,3 +170,52 @@ public class Anagrams {
 
 - 지역 변수의 변경
 - return, break, continue or throw any checked exception
+
+
+## Item 46. 스트림에서 부수 효과로부터 자유로운 함수를 사용하라
+> 부수 효과로부터 자유로운 함수<sup>side-effect-free function</sup>: 순수한 함수<sup>pure function</sup>, 즉 함수의 실행이 외부에 영향을 끼치지 않는 함수를 의미. 스레드에 안전하고 병렬적인 계산이 가능 - [위키피디아: 함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D#%EC%88%9C%EC%88%98%ED%95%9C_%ED%95%A8%EC%88%98)
+
+스트림은 단순한 API가 아니라 함수형 프로그래밍을 기반한 패러다임임. 스트림을 올바르게 사용하기 위해서는 패러다임을 이해해야 함. 스트림 패러다임의 가장 중요한 부분은 각 단계에서는 직전 단계의 결과의 순수 함수의 연속으로 계산을 구성한다는 것.
+- 순수함수의 결과는 입력에만 의존 함
+- 순수함수는 변할 수 있는 상태에 의존하지 않음
+- 순수함수는 상태를 변경하지 않음
+
+```java
+Map<String, Long> freq = new HashMap<>();
+try (Stream<String> words = new Scanner(file).tokens()) {
+    // 어설픈 stream 사용
+    words.forEach(word -> 
+            freq.merge(word.toLowerCase(), 1L, Long::sum));
+
+    // 위 코드를 for 문으로 표현
+    for (String word : words) {
+        freq.merge(word.toLowerCase(), 1L, Long::sum);
+    }
+}
+```
+
+> `.tokens()` 는 자바 9에 추가 된 API - 참고 [JDK9 API Doc](https://docs.oracle.com/javase/9/docs/api/java/util/Scanner.html#tokens--)
+
+위 코드의 문제
+- freq 라는 외부의 값을 변경 시킴
+- 스트림 API로 부터 아무 이점도 얻지 못함
+- 단순 for 문 코드 보다 더 길고 읽기 어려워짐
+
+```java
+// 개선 된 코드
+Map<String, Long> freq;
+try (Stream<String> words = new Scanner(file).tokens()) {
+    freq = words.collect(groupingBy(String::toLowerCase, counting()));
+}
+```
+
+`forEach` 는 자바 프로그래머에게 가장 익숙한 형태. 하지만!
+- 덜 효과적이고 스트림 친화적이지 않은 것 중 하나임. 
+- `forEach` 는 명시적으로 반복적이기 때문에 병렬화가 가능하지 않음.
+
+`forEach` 는 스트림 연산의 결과를 정리<sup>report</sup>하는데에만 사용하거나 스트림 연산의 결과를 기존 컬렉션에 추가할 때와 같은 상황에서 사용하는 것이 좋음.
+
+스트림을 올바르게 사용하려면 Collectors API에 대해 알아야 함.
+(TODO)
+
+
