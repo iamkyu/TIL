@@ -219,3 +219,43 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 (TODO)
 
 
+## Item 47. 반환타입으로 스트림 보다는 컬렉션을 사용하라
+많은 메서드들이 연속 된 요소<sup>sequences of elements</sup>를 반환함.
+- 자바 8 이전에는 Collection, Set, List, Iterable, 배열 타입 등의 선택지가 있었음.
+- 자바8 에서 스트림이라는 선택지가 추가 됨.
+
+API 에서 스트림을 반환 받아 for-each 루프로 처리하는 방법
+
+```java
+// 방법1. 컴파일 오류
+// you have to cast the method reference to an appropriately parameterized Iterable
+for (ProcessHandle ph : ProcessHandle.allProcesses()::iterator) {
+    // Process the process
+}
+
+// 방법2. 작동하지만 읽기 어렵고 지저분함
+for (ProcessHandle ph : (Iterable<ProcessHandle>) ProcessHandle.allProcesses()::iterator) {
+    // Process the process
+}
+
+// 방법3. 어댑터 메서드를 분리
+for (ProcessHandle p : iterableOf(ProcessHandle.allProcesses())) {
+    // Process the process
+}
+
+// Adapter from Stream<E> to Iterable<E> 
+public static <E> Iterable<E> iterableOf(Stream<E> stream) { 
+    return stream::iterator; 
+}
+```
+- 반환값이 스트림 타입일 때 for-each 루프에서 처리하기가 굉장히 까다로움. 
+- 반대로 API 응답이 Iterable 인데 스트림 파이프라인에서 처리하는 경우도 까다로움.
+- 클라이언트가 반환값을 어떻게 처리할 지 모르기 때문에 두가지 모두 고려해야 함.
+
+
+
+`java.util.Collection` 인터페이스는 `java.lang.Iterable` 을 상속하고 `default Stream<E> stream()` 메서드가 있어서 반복과 스트림 모두 지원이 가능함.
+- Collection 또는 ArrayList, HashSet과 같은 구현체를 반환하는 것이 좋음.
+- 지나치게 많은 연속된 요소를 반환하기 위해 메모리에 저장하는 것은 금물이지만, `AbstractList`를 임의로 구현하여 약간의 Trick 활용 가능. 책의 예제는 모든 요소를 메모리에 저장하지 않고  bit 연산을 통해 요소에 접근할 때 값을 계산.
+- 하지만 Collection 인터페이스를 구현할 때 `size` 와 `contains`를 올바르게 구현해야 함. `size`의 반환 타입은 int. int 의 범위는 -2<sup>31</sup> ~ 2<sup>31</sup>-1 로 한정 됨에 따라 컬렉션에 더 많은 요소들이 저장 되어도 2<sup>31</sup>-1 이상의 size를 반환할 수 없음.
+- 스트림을 반환 타입을하면 구현하는 입장에서는 더 쉽지만 반복문을 사용하는 것보다 더 읽기 어렵고 느려질 수 있음.
