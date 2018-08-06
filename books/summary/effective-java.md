@@ -172,6 +172,7 @@ public class Anagrams {
 - return, break, continue or throw any checked exception
 
 
+
 ## Item 46. 스트림에서 부수 효과로부터 자유로운 함수를 사용하라
 > 부수 효과로부터 자유로운 함수<sup>side-effect-free function</sup>: 순수한 함수<sup>pure function</sup>, 즉 함수의 실행이 외부에 영향을 끼치지 않는 함수를 의미. 스레드에 안전하고 병렬적인 계산이 가능 - [위키피디아: 함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D#%EC%88%9C%EC%88%98%ED%95%9C_%ED%95%A8%EC%88%98)
 
@@ -194,7 +195,7 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 }
 ```
 
-> `.tokens()` 는 자바 9에 추가 된 API - 참고 [JDK9 API Doc](https://docs.oracle.com/javase/9/docs/api/java/util/Scanner.html#tokens--)
+> `tokens()` 는 자바 9에 추가 된 API - 참고 [JDK9 API Doc](https://docs.oracle.com/javase/9/docs/api/java/util/Scanner.html#tokens--)
 
 위 코드의 문제
 - freq 라는 외부의 값을 변경 시킴
@@ -216,7 +217,9 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 `forEach` 는 스트림 연산의 결과를 정리<sup>report</sup>하는데에만 사용하거나 스트림 연산의 결과를 기존 컬렉션에 추가할 때와 같은 상황에서 사용하는 것이 좋음.
 
 스트림을 올바르게 사용하려면 Collectors API에 대해 알아야 함.
+toMap, groupingBy, counting
 (TODO)
+
 
 
 ## Item 47. 반환타입으로 스트림 보다는 컬렉션을 사용하라
@@ -258,4 +261,58 @@ public static <E> Iterable<E> iterableOf(Stream<E> stream) {
 - Collection 또는 ArrayList, HashSet과 같은 구현체를 반환하는 것이 좋음.
 - 지나치게 많은 연속된 요소를 반환하기 위해 메모리에 저장하는 것은 금물이지만, `AbstractList`를 임의로 구현하여 약간의 Trick 활용 가능. 책의 예제는 모든 요소를 메모리에 저장하지 않고  bit 연산을 통해 요소에 접근할 때 값을 계산.
 - 하지만 Collection 인터페이스를 구현할 때 `size` 와 `contains`를 올바르게 구현해야 함. `size`의 반환 타입은 int. int 의 범위는 -2<sup>31</sup> ~ 2<sup>31</sup>-1 로 한정 됨에 따라 컬렉션에 더 많은 요소들이 저장 되어도 2<sup>31</sup>-1 이상의 size를 반환할 수 없음.
-- 스트림을 반환 타입을하면 구현하는 입장에서는 더 쉽지만 반복문을 사용하는 것보다 더 읽기 어렵고 느려질 수 있음.
+- 스트림을 반환 타입으로 하면 구현하는 입장에서는 더 쉽지만 반복문을 사용하는 것보다 더 읽기 어렵고 느려질 수 있음.
+
+
+
+## Item 48. 스트림을 병렬로 만들때는 주의하라
+[메르센 소수](https://ko.wikipedia.org/wiki/%EB%A9%94%EB%A5%B4%EC%84%BC_%EC%86%8C%EC%88%98) 20개를 출력하는 프로그램이 있음. 처리 속도를 높이기 위해 `parallel()`를 파이프라인에 연결하였으나 CPU 사용률은 90% 까지 치솟고 결과는 나오지 않음.
+
+```java
+// BigInteger.TWO 는 private access
+private static BigInteger TWO = valueOf(2);
+
+public static void main(String[] args) {
+    primes().map(p -> TWO.pow(p.intValueExact())
+            .subtract(BigInteger.ONE))
+            .filter(mersenne -> mersenne.isProbablePrime(50))
+            .limit(20)
+            .forEach(System.out::println);
+}
+
+static Stream<BigInteger> primes() {
+    return Stream.iterate(TWO, BigInteger::nextProbablePrime);
+}
+```
+- 소스가 Stream.iterate 에서 제공됨
+- 중간에 limit 가 사용됨
+
+위 두가지 중 하나라도 해당 된다면 최상의 상황에서도 병렬처리를 통한 성능 향상을 기대할 수 없음. 설상가상으로 병렬화의 기본 전략은 불필요한 결과를 버려도 몇가지 추가 요소를 처리하는데 아무 문제가 없다고 가정함. 위 코드에 `parallel()`을 적용하면 각 요소를 계산하는 비용이 대략 이전 모든 요소를 결합한 계산 비용과 같음.
+
+> Worse, the default parallelization strategy deals with the unpredictability of limit by assuming there’s no harm in processing a few extra elements and discarding any unneeded results. 
+
+
+
+병렬 처리를 통한 성능 향상은 원하는 크기의 하위 배열로 쉽고 정확하게 분할할 수 있는 경우임. 
+- ArrayList / HashMap / HashSet / ConcurrentHashMap 의 인스턴스, 배열, int 범위 값, long 범위 값이 이에 해당. 
+- 이러한 자료구조는 양호한 참조 지역성<sup>locality-of-reference</sup>을 제공.
+- 작업을 분할하기 위해 `spliterator` 를 사용.
+
+
+
+스트림 파이프라인의 터미널 작업의 특성도 병렬 실행의 효율성에 영향을 미침.
+- 전체 파이프라인 작업과 비교해 터미널 작업에서 상당한 양의 작업이 수행되며 본질적으로 순차적이면 병렬 처리가 제한적.
+- 최상의 터미널 작업은 요소의 감소나 패키징 작업임. `reduce`, `min`, `max`, `count`, `sum`
+- 하지만 스트림의 `collect` 메서드와 같은 가변 감소<sup>mutable reductions</sup>는 병렬 처리에 적합하지 않음.
+
+
+
+성능 저하 외에 잘못 된 병렬처리가 발생시킬 수 있는 문제
+- [liveness failures](https://1ambda.github.io/cloud-computing/cloud-computing-5/#safety-and-liveness): no guarantee that something good will happen, eventually
+- [safety failures](https://1ambda.github.io/cloud-computing/cloud-computing-5/#safety-and-liveness): no guarantee that something bad will never happen
+
+
+
+스트림을 병렬 처리하는 것은 일종의 성능 최적화
+- 실제 시스템 환경에서 성능 테스트 필수.
+- 일반적으로 병렬 스트림 파이프라인은 공통 [fork-join](https://okky.kr/article/345720) 풀에서 실행되기 때문에 병렬 스트림의 오작동이 전혀 다른 곳의 성능을 해칠 수 있음.
