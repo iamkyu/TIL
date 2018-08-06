@@ -190,9 +190,9 @@ public class Anagrams {
 
 
 ## Item 46. 스트림에서 부수 효과로부터 자유로운 함수를 사용하라
-> 부수 효과로부터 자유로운 함수<sup>side-effect-free function</sup>: 순수한 함수<sup>pure function</sup>, 즉 함수의 실행이 외부에 영향을 끼치지 않는 함수를 의미. 스레드에 안전하고 병렬적인 계산이 가능 - [위키피디아: 함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D#%EC%88%9C%EC%88%98%ED%95%9C_%ED%95%A8%EC%88%98)
+> 순수 함수<sup>pure function</sup>: 부수 효과로부터 자유로운 함수<sup>side-effect-free function</sup>, 즉 함수의 실행이 외부에 영향을 끼치지 않는 함수를 의미. 스레드에 안전하고 병렬적인 계산이 가능 - [위키피디아: 함수형 프로그래밍](https://ko.wikipedia.org/wiki/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D#%EC%88%9C%EC%88%98%ED%95%9C_%ED%95%A8%EC%88%98) 
 
-스트림은 단순한 API가 아니라 함수형 프로그래밍을 기반한 패러다임임. 스트림을 올바르게 사용하기 위해서는 패러다임을 이해해야 함. 스트림 패러다임의 가장 중요한 부분은 각 단계에서는 직전 단계의 결과의 순수 함수의 연속으로 계산을 구성한다는 것.
+스트림은 단순한 API가 아니라 함수형 프로그래밍을 기반한 패러다임임. 스트림을 올바르게 사용하기 위해서는 패러다임을 이해해야 함. 스트림 패러다임의 가장 중요한 부분은 각 단계에서는 직전 단계의 결과의 (as close as posible) 순수 함수의 연속으로 계산을 구성한다는 것.
 - 순수함수의 결과는 입력에만 의존 함
 - 순수함수는 변할 수 있는 상태에 의존하지 않음
 - 순수함수는 상태를 변경하지 않음
@@ -216,12 +216,13 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 위 코드의 문제
 - freq 라는 외부의 값을 변경 시킴
 - 스트림 API로 부터 아무 이점도 얻지 못함
-- 단순 for 문 코드 보다 더 길고 읽기 어려워짐
+- for-each 반복문 보다 더 길고 읽기 어려워짐
 
 ```java
 // 개선 된 코드
-Map<String, Long> freq;
+Map<String, Long> freq; // freq 의 상태를 변경하지 않음.
 try (Stream<String> words = new Scanner(file).tokens()) {
+    // Collectors는 정적 임포트를 함으로써 가독성을 높임.
     freq = words.collect(groupingBy(String::toLowerCase, counting()));
 }
 ```
@@ -232,20 +233,23 @@ try (Stream<String> words = new Scanner(file).tokens()) {
 
 `forEach` 는 스트림 연산의 결과를 정리<sup>report</sup>하는데에만 사용하거나 스트림 연산의 결과를 기존 컬렉션에 추가할 때와 같은 상황에서 사용하는 것이 좋음.
 
-스트림을 올바르게 사용하려면 Collectors API에 대해 알아야 함.
-toMap, groupingBy, counting
-(TODO)
+스트림을 올바르게 사용하려면 Collectors API에 대해 알아야 함. `toMap`, `groupingBy`, `counting` (TODO)
 
 
 
 ## Item 47. 반환타입으로 스트림 보다는 컬렉션을 사용하라
 많은 메서드들이 연속 된 요소<sup>sequences of elements</sup>를 반환함.
-- 자바 8 이전에는 Collection, Set, List, Iterable, 배열 타입 등의 선택지가 있었음.
+- 자바 8 이전의 선택지
+  - 일반적으로 Collection 인터페이스 (Collection, Set, List)
+  - 단지 for-each 반복을 위해서거나 Collection 인터페이스를 구현할 수 없는 경우 (대부분의 경우 `cotains(Object)`) : Iterable
+  - 기본형 타입을 담거나 엄격한 성능 요구사항이 있는 경우: 배열 타입
 - 자바8 에서 스트림이라는 선택지가 추가 됨.
 
-API 에서 스트림을 반환 받아 for-each 루프로 처리하는 방법
+
 
 ```java
+// 스트림을 반환 받아 for-each 반복문으로 처리하는 방법
+
 // 방법1. 컴파일 오류
 // you have to cast the method reference to an appropriately parameterized Iterable
 for (ProcessHandle ph : ProcessHandle.allProcesses()::iterator) {
@@ -267,21 +271,31 @@ public static <E> Iterable<E> iterableOf(Stream<E> stream) {
     return stream::iterator; 
 }
 ```
+`java.util.stream.Stream`인터페이스는 `java.lang.Iterable` 에서 유일한 추상 메서드인 `iterator`를 포함하고 있고 호환이 가능함. 하지만 처리가 굉장히 까다로움.
+
+> It is especially frustrating because the Stream interface contains the sole abstract method in the Iterable interface, and Stream’s specification for this method is compatible with Iterable’s. 
+
 - 반환값이 스트림 타입일 때 for-each 루프에서 처리하기가 굉장히 까다로움. 
-- 반대로 API 응답이 Iterable 인데 스트림 파이프라인에서 처리하는 경우도 까다로움.
+- 반대로 반환 타입이 Iterable 인데 스트림 파이프라인에서 처리하는 경우도 까다로움.
 - 클라이언트가 반환값을 어떻게 처리할 지 모르기 때문에 두가지 모두 고려해야 함.
 
 
 
 `java.util.Collection` 인터페이스는 `java.lang.Iterable` 을 상속하고 `default Stream<E> stream()` 메서드가 있어서 반복과 스트림 모두 지원이 가능함.
-- Collection 또는 ArrayList, HashSet과 같은 구현체를 반환하는 것이 좋음.
+- Collection 또는 ArrayList, HashSet 과 같은 구현체를 반환하는 것이 좋음.
 - 지나치게 많은 연속된 요소를 반환하기 위해 메모리에 저장하는 것은 금물이지만, `AbstractList`를 임의로 구현하여 약간의 Trick 활용 가능. 책의 예제는 모든 요소를 메모리에 저장하지 않고  bit 연산을 통해 요소에 접근할 때 값을 계산.
 - 하지만 Collection 인터페이스를 구현할 때 `size` 와 `contains`를 올바르게 구현해야 함. `size`의 반환 타입은 int. int 의 범위는 -2<sup>31</sup> ~ 2<sup>31</sup>-1 로 한정 됨에 따라 컬렉션에 더 많은 요소들이 저장 되어도 2<sup>31</sup>-1 이상의 size를 반환할 수 없음.
-- 스트림을 반환 타입으로 하면 구현하는 입장에서는 더 쉽지만 반복문을 사용하는 것보다 더 읽기 어렵고 느려질 수 있음.
+- 구현의 편의를 위해 스트림 타입으로 반환할 수 있지만 클라이언트가 `Stream-to-Iterable` 어댑터를 구현할 수 있거나 반복이 더 자연스러운 상황(?)에서 사용해야 함. 하지만 어댑터 코드는 복잡하게 할 뿐만 아니라 성능을 떨어뜨림.
+
+> Either of these stream implementations of sublists is fine, but both will require some users to employ a Stream-to-Iterable adapter or to use a stream in places where iteration would be more natural. Not only does the Stream-toIterable adapter clutter up client code, but it slows down the loop by a factor of 2.3 on my machine. A purpose-built Collection implementation (not shown here) is considerably more verbose but runs about 1.4 times as fast as our stream-based implementation on my machine.
 
 
 
 ## Item 48. 스트림을 병렬로 만들때는 주의하라
+자바는 항상 동시성 프로그래밍을 용이하게 할 수 있는 기능을 제공해 왔고 점점 쉬워지고 있음. 하지만 정확하고 빠른 프로그램을 작성하는 것은 그 어느때 보다 어려움.
+
+ 
+
 [메르센 소수](https://ko.wikipedia.org/wiki/%EB%A9%94%EB%A5%B4%EC%84%BC_%EC%86%8C%EC%88%98) 20개를 출력하는 프로그램이 있음. 처리 속도를 높이기 위해 `parallel()`를 파이프라인에 연결하였으나 CPU 사용률은 90% 까지 치솟고 결과는 나오지 않음.
 
 ```java
@@ -290,7 +304,7 @@ private static BigInteger TWO = valueOf(2);
 
 public static void main(String[] args) {
     primes().map(p -> TWO.pow(p.intValueExact())
-            .subtract(BigInteger.ONE))
+            .subtract(BigInteger.ONE)) // 정적 임포트가 가독성에서 나음.
             .filter(mersenne -> mersenne.isProbablePrime(50))
             .limit(20)
             .forEach(System.out::println);
@@ -300,8 +314,8 @@ static Stream<BigInteger> primes() {
     return Stream.iterate(TWO, BigInteger::nextProbablePrime);
 }
 ```
-- 소스가 Stream.iterate 에서 제공됨
-- 중간에 limit 가 사용됨
+- `Stream.iterate` 는 순차적으로 일어나기 때문에 분할하기가 어렵고 박싱된 객체를 생성하므로 이를 다시 언박싱하는 과정 필요
+- `limit`, `findFirst` 와 같이 순서에 의존하는 연산을 병렬 스트림에서 수행하려면 비용이 비쌈
 
 위 두가지 중 하나라도 해당 된다면 최상의 상황에서도 병렬처리를 통한 성능 향상을 기대할 수 없음. 설상가상으로 병렬화의 기본 전략은 불필요한 결과를 버려도 몇가지 추가 요소를 처리하는데 아무 문제가 없다고 가정함. 위 코드에 `parallel()`을 적용하면 각 요소를 계산하는 비용이 대략 이전 모든 요소를 결합한 계산 비용과 같음.
 
@@ -310,7 +324,7 @@ static Stream<BigInteger> primes() {
 
 
 병렬 처리를 통한 성능 향상은 원하는 크기의 하위 배열로 쉽고 정확하게 분할할 수 있는 경우임. 
-- ArrayList / HashMap / HashSet / ConcurrentHashMap 의 인스턴스, 배열, int 범위 값, long 범위 값이 이에 해당. 
+- `ArrayList` / `HashMap` / `HashSet` / `ConcurrentHashMap` 의 인스턴스, 배열, int 범위 값, long 범위 값이 이에 해당. 
 - 이러한 자료구조는 양호한 참조 지역성<sup>locality-of-reference</sup>을 제공.
 - 작업을 분할하기 위해 `spliterator` 를 사용.
 
