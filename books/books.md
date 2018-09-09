@@ -10,6 +10,7 @@
 - [x] [객체 지향과 디자인 패턴. 최범균. 인투북스. 2013](summary/oop-and-design-pattern.md)
 - [x] [객체지향의 사실과 오해. 조영호. 위키북스. 2015](summary/the-essence-of-oo.md)
 - [x] [누워서 읽는 알고리즘. 임백준. 한빛미디어. 2013](summary/algorithm-in-bed.md)
+- [x] [도메인 주도 설계 구현. 반 버논, 윤창석, 황예진 역. 에이콘출판. 2016](summary/ddd-implementing.md)
 - [x] [도메인 주도 설계. 에릭에반스. 이대엽 역. 위키북스. 2011](summary/ddd.md)
 - [x] [맨먼스 미신. 프레더릭 브룩서. 강중빈 역. 인사이트. 2015](summary/the-mythical-man-month.md)
 - [x] [미래를 바꾼 아홉 가지 알고리즘. 존 맥코믹. 민병교 역. 에이콘출판. 2013](summary/nine-algorithms.md)
