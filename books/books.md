@@ -2,6 +2,7 @@
 읽은 책을 간략히 정리.
 
 ## 목록 (가나다순)
+- [ ] [GOF의 디자인 패턴. Gang of four 저. 김정아 역. 프로텍미디어. 2015](summary/gof.md)
 - [x] HTTP 완벽 가이드. 데이빗 고울리 외. 이응준 외. 인사이트. 2014
 - [x] [DDD Start. 최범균. 지앤선. 2016](summary/ddd-start.md)
 - [x] [JUnit in Action. 피터 타치브 외. 이복연 역. 인사이트. 2011](summary/junit-in-action.md)
