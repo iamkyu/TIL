@@ -242,3 +242,70 @@ public class Warble extends Entity {
 - 모델을 설계하며 필수적인 개념을 포착하기 위해선 클라이언트 관점을 가정해보는 과정이 필수.
 - 그렇지 않으면 비즈니스 관점이 아닌 우리만의 관점에서 모델링하는 실수를 할 수 있음.
 - 테스트는 반드시 도메인적 의미가 있어야 함.
+
+
+
+## 7장 서비스
+
+도메인 내에서 서비스란 도메인 고유의 작업을 수행하는 무상태의 오퍼레이션.
+
+### 도메인 서비스가 아닌 것
+- 원격 클라이언트로 하여금 복잡한 비즈니스 시스템과 상효 교류하도록 해주는 큰 단위의 컴포넌트
+- 애플리케이션 서비스
+
+### 도메인 서비스를 사용할 수 있는 경우
+- 중요한 비즈니스 프로세서를 수행할 때
+- 어떤 컴포지션에서 다른 컴포지션으로 도메인 객체를 변형할 때
+- 하나 이상의 도메인 객체에서 필요로 하는 입력 값을 계산할 때
+
+
+```java
+// 도메인 시나리오
+// 시스템의 사용자는 반드시 인증돼야 하지만, 테넌트가 활성화된 경우에만 인증이 가능하다.
+
+// 클라이언트는
+// 1) 테넌트가 활성화 됐는지 확인하고
+// 2) 유저를 찾아서 인증 가능여부를 확인
+
+boolean authentic = false;
+
+Tenant tenant = DomainRegistry
+        .tenantRepository()
+        .tenantOfId(aTenantId);
+
+if (tenant != null && tenant.isActive()) {
+    User user = DomainRegistry
+            .userRepository()
+            .userWithUserName(aTanantId, aUsername);
+
+    if (user != null) {
+        authentic = user.isAuthentic(aPassword);
+    }
+}
+
+return authentic;
+
+```
+
+클라이언트 관점에서 모델링 한 위 예제 코드의 문제
+- 클라이언트로 하여금 인증한다는 의미를 이해하도록 요구함.
+- 유니쿼터스 언어가 명시적으로 모델링되지 않았음. User 에게 ‘인증 가능 여부’를 물어야 하는데 모델에게 ‘인증하라’고 요청하고 있음.
+- 실제로 클라이언트가 수행해야만 하는 비즈니스적 책임은 다른 모든 세부사항을 다룰 단일 도메인 특정 오퍼레이션의 사용을 조정하는 일뿐이어야 함.
+
+```java
+// 식별자와 관련된 모든 개념을 identity 모듈 안에 넣음
+package com.saasovation.identityaccess.domain.model.identity;
+
+public interface AuthenticationService {
+    public UserDescriptor authenticate(TenantId aTenentId,
+                                       String aUsername,
+                                       String aPassword) {
+        // do something
+    }
+}
+```
+
+- 모든 인증 세부 사항을 애플리케이션 서비스 클라이언트에서 `AuthenticationService `라는 무상태 도메인 서비스로 밀어냄.
+- `UserDescriptor`라는 User를 참조하기 위해 필수적인 일부 특성만 포함한 값 객체를 반환.
+- 따라서 도메인 로직이 애플리케이션 계층으로 유출되지 않음.
+
