@@ -309,3 +309,6 @@ public interface AuthenticationService {
 - `UserDescriptor`라는 User를 참조하기 위해 필수적인 일부 특성만 포함한 값 객체를 반환.
 - 따라서 도메인 로직이 애플리케이션 계층으로 유출되지 않음.
 
+### 서비스가 정말 필요한가
+- 서비스로 도메인 개념을 모델링하는 것은 상황이 적절할 때만 신중히 사용할 것.
+- 서비스를 ‘묘책’으로 지나치게 사용하면 ([AnemicDomainModel](https://www.martinfowler.com/bliki/AnemicDomainModel.html))이 만들어짐.
