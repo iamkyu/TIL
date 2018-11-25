@@ -31,6 +31,7 @@
 - [x] [코딩을 지탱하는 기술. 니시오 히로카즈. 김완섭 역. 비제이퍼블릭. 2013](summary/coding-technology.md)
 - [x] [클린소프트웨어. 로버트 C 마틴. 이용원 역. 제이펍. 2017](summary/clean-software.md)
 - [x] [클린코더. 로버트마틴. 정희종 역. 에이콘출판. 2016](summary/the-clean-coder.md)
+- [x] [클린코드. 로버트마틴. 박재호, 이해영 역. 인사이트. 2013](summary/clean-code.md)
 - [x] [테스트 주도 개발. 켄트벡. 김창준 외 역. 인사이트. 2014](summary/test-driven-development-by-example.md)
 - [x] [테스트 주도 개발로 배우는 객체 지향 설계와 실천. 스티브 프리먼 외. 이대엽 역. 인사이트 출판. 2013](summary/growing-oo-software-guided-by-tests.md)
 - [x] [토비의 스프링 3.1. 이일민. 에이콘출판. 2012](https://github.com/iamkyu/toby-spring)
