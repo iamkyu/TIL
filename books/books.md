@@ -21,6 +21,7 @@
 - [x] [소프트웨어 장인. 산드로 만쿠소. 권오인 역. 길벗. 2015](summary/master-of-software.md)
 - [x] [스크럼. 켄 슈와버 외. 박일 외 역. 인사이트. 2008](summary/xp-and-scrum.md)
 - [x] [실용주의 프로그래머. 앤드류 헌트외. 김창준 외 역. 인사이트. 2014](summary/pragmatic-programmer.md)
+- [x] [엔터프라이즈 애플리케이션 아키텍처 패턴. 마틴파울러 저. 최민석 역. 위키북스. 2015](summary/poeaa.md)
 - [x] [이펙티브 유닛테스트. 라쎄 코스켈라. 이복연 역. 한빛미디어. 2013](summary/effective-unittesting.md)
 - [x] [이펙티브 자바. 조슈아 블로크 저. 이병준 역. 인사이트. 2014](summary/effective-java.md)
 - [x] [읽기 좋은 코드가 좋은 코드다. 더스틴 보즈웰 외. 임백준 역. 한빛미디어. 2012](books/summary/art-of-readable-code.md)
