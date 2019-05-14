@@ -22,6 +22,7 @@
 - [cross-origin-resource-sharing](cross-origin-resource-sharing/cross-origin-resource-sharing.md)
 - [css-text-style](css-text-style/css-text-style.md)
 - [css-transform](css-transform/css-transform.md)
+- [decryption-aes256-at-java8](decryption-aes256-at-java8/decryption-aes256-at-java8.md)
 - [docker-mysql-quickstart](docker-mysql-quickstart/docker-mysql-quickstart.md)
 - [git-a-better-log](git-a-better-log/git-a-better-log.md)
 - [git-cheatseat](git-cheatseat/git-cheatseat.md)
