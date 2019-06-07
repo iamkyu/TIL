@@ -24,7 +24,7 @@
 - [엔터프라이즈 애플리케이션 아키텍처 패턴. 마틴파울러 저. 최민석 역. 위키북스. 2015](summary/poeaa.md)
 - [이펙티브 유닛테스트. 라쎄 코스켈라. 이복연 역. 한빛미디어. 2013](summary/effective-unittesting.md)
 - [이펙티브 자바. 조슈아 블로크 저. 이병준 역. 인사이트. 2014](summary/effective-java.md)
-- [읽기 좋은 코드가 좋은 코드다. 더스틴 보즈웰 외. 임백준 역. 한빛미디어. 2012](books/summary/art-of-readable-code.md)
+- [읽기 좋은 코드가 좋은 코드다. 더스틴 보즈웰 외. 임백준 역. 한빛미디어. 2012](summary/art-of-readable-code.md)
 - [임백준의 소프트웨어 산책. 임백준. 한빛미디어. 2005](summary/polyglot-and-walk-of-software.md)
 - [자바 세상의 빌드를 이끄는 메이븐. 박재성. 한빛미디어. 2011](summary/maven-book.md)
 - [자바웹프로그래밍 NEXT Step. 박재성. 로드북. 2016](https://github.com/iamkyu/jwp-basic)
