@@ -6,6 +6,7 @@
 - [GOF의 디자인 패턴. Gang of four 저. 김정아 역. 프로텍미디어. 2015](summary/gof.md)
 - [JUnit in Action. 피터 타치브 외. 이복연 역. 인사이트. 2011](summary/junit-in-action.md)
 - [NHN은 이렇게 한다 소프트웨어 품질관리. 유석문 외. 위키북스. 2010](summary/like-nhn.md)
+- [Release It. 마이클 나이가드 저. 신승환, 정태중 역. 위키북스. 2007](summary/release-it.md)
 - [TDD에 대한 오해와 진실 TDD 이야기. 신정호 외. 한빛미디어. 2014](summary/tdd-story.md)
 - [객체 지향과 디자인 패턴. 최범균. 인투북스. 2013](summary/oop-and-design-pattern.md)
 - [객체지향의 사실과 오해. 조영호. 위키북스. 2015](summary/the-essence-of-oo.md)
