@@ -151,3 +151,91 @@ public class io/iamkyu/JvmInternal2 {
 - Member Variable => Heap 에 생성 된 Instance 에 할당, 변수 정보는 Method Area 의 Field Information.
 - Parameter Variable => Java Virtual Machine Stacks 에 할당, 변수 정보는 Method Area 의 Method Information.
 - Local Variable => Parameter Variable 와 동일.
+
+
+## CH3. Garbage Collection
+> Heap Storage for objects is reclaimed by an automatic storage management system (typically garbage collector); objects never explicitly deallocated - Java Virtual Machine Speculation, Section 3.5.3 [JVMS2 1999]
+
+- Java SE8 스펙 기준으로 [2.5.3](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5.3) 절에 위 내용이 있음.
+- 메모리 해제에 대한 내용은 이 내용이 전부이고 벤더사는 이 내용을 바탕으로 Garbage Collection 알고리즘을 구현했다고 함.
+
+### GC의 대상
+- Garbage 란, Heap 과 Method Area 에 사용되지 않는 오브젝트 (이 두 영역은 모든 스레드가 공유하는 공간이기도 함).
+- ‘사용되지 않는다’ 의 기준은 ‘현재’ 를 기준으로 함. 즉, 현재 사용되지 않는 객체가 Garbage.
+- 현재 사용여부는 Root Set 과의 관계로 판단. (TODO 여기서 의문인 부분은 GC 에 대한 스펙은 위 문장이 전부라고 했는데 이 기준은 모든 벤더사가 공통되게 적용한건지 궁금.)
+- Root Set 에 어떤 식으로든 참조 관계가 있다면 Reachable Object 로 취급.
+
+#### Root Set 구분
+아래 세 가지에 해당되지 않는 것은 모두 Garbage 로 판단.
+1. Stack 의 참조 정보. Local Variable Section, Operand Stack 에 오브젝트의 참조 정보.
+2. Method Area 에 로딩 된 클래스 중, Constant Pool 에 있는 참조 정보.
+3. 메모리에 남아 있는 Native Method 로 넘겨진 오브젝트 참조.
+
+### GC 의 목적
+- Heap 을 재활용하기 위해 Root Set 에서 참조되지 않는 Object 를 없애 가용 가능한 공간을 만드는 작업.
+- GC 는 메모리 압박이 있을때 수행.
+- 재활용을 위해 수행 된 메모리 해지는 할당한 그 자리에서 이루어지기 때문에 Garbage 가 빠져 나간 자리는 듬성듬성 함.
+- 이런 단편화 현상을 방지하기 위해 Compaction 과 같은 알고리즘이 GC 와 함께 이루어짐.
+
+### GC 의 기본 알고리즘
+GC 알고리즘은 크게 Garbage Object 를 찾아내는 부분(Detection)과 제거하는 부분으로 나누어 볼 수 있음.
+
+1. Reference Counting Algorithm
+2. Mark-and-Sweep Algorithm
+3. Mark-and-Compacting Algorithm
+4. Copying Algorithm
+5. Generational Algorithm
+6. Train Algorithm
+
+#### Reference Counting Algorithm
+- 각 객체마다 Reference Count 를 관리함. Count 가 0이 되면 GC.
+- TODO 책의 내용으로 유추했을 땐 Stack 의 Local Variable Section 에 Count 가 관리 되는 것 같은데 정확히 어디서 관리하는지를 잘 모르겠음.
+- 이 알고리즘의 장점은 비교적 구현이 쉬움.  또한, Reference Count 가 0이 될때마다 GC 가 발생하기 때문에 Pause Time 이 분산됨.
+- 반면, 각 Object 마다 Reference Count 를 관리해야 하는 부담과 Memory Leak 의 가능성이 높음. 예컨대, 순환 연결 리스트의 경우 순환 참조를 가짐. 즉 이 리스트에 포함 된 Node 들은 Reference Count 가 0이 될 수 없음.
+
+#### Mark-and-Sweep Algorithm
+- Tracing  Algorithm 이라고도 불림. Reference Counting Algorithm 의 단점을 극복하기 위해 등장.
+- 알고리즘 이름에서 드러나듯 Mark Phase 와 Sweep Phase 가 나뉘어 짐.
+- Mark Phase 에서는 각 객체마다 Reference Count 하는 방식 대신, Root Set 에서 시작하는 참조 관계를 추적하여 Marking 하는 방식 사용. Marking 에도 여러가지 방법이 이 있으나 주로 Object Header 에 Flag 나 별도의 Bitmap Table 을 사용하는 방법을 사용한다고 함.
+- Mark Phase 에 이어서 Sweep Phase 돌입. Marking 정보를 활용해 Marking 되지 않은 객체를 지움. Sweep Phase 가 완료되면 모든 객체의 Marking 정보를 초기화.
+- 이 알고리즘의 단점은 GC 과정에서 Heap 의 사용이 제한 되어 Suspend 현상 발생. 이유는 Mark 작업의 정확성과 Memory Corruption 을 방지하기 위함. 또한, GC 이후 메모리 단편화로 인해 Free Memory 가 있는 것처럼 보이지만 할당이 불가능한 상황이 될 수 있음. (이건 Reference Counting Algorithm도 동일한 문제가 있지 않나 싶음.)
+
+![mark-and-sweep](https://user-images.githubusercontent.com/13076271/60764466-64b38980-a0c5-11e9-93ae-e683e3d0864b.jpg)
+> 출처:  [https://sandeepin.wordpress.com/2011/12/11/mark-and-sweep-garbage-collection-algorithm/](https://sandeepin.wordpress.com/2011/12/11/mark-and-sweep-garbage-collection-algorithm/) 
+
+#### Mark-and-Compaction Algorithm
+- Mark-and-Sweep Algorithm 에서 메모리 단편화 문제를 해결하고자 Compaction 과정이 추가 됨. 크게 Mark Phase 와 Compaction Phase 로 구성.
+
+![compaction](https://user-images.githubusercontent.com/13076271/60764668-fa044d00-a0c8-11e9-8229-d99598f4ed19.png)
+> 출처: https://www.slideshare.net/novathinker/3-garbage-collection 
+
+- Compaction 은 Live Object 를 연속된 메모리 공간에 적재하는 것을 의미. 보통 하위 Address 로 Compaction 을 수행. Compaction 에는 크게 3가지 방식이 있음.
+	1. Arbitrary: 무작위로 정렬
+	2. Linear: Reference 의 순서대로 정렬
+	3. Sliding: 할당된 순서로 정렬. Heap 은 보통 하위 Address 부터 할당을 시작하기 때문에 할당 순서는 Adress 순서가 되는 경우가 많음
+- Linear 방식은 Compaction 을 위해 Reference 의 순서를 따지는 과정에서 오버헤드 발생. 또한, 객체 탐색에 있어서는 어차피 포인터를 기반으로 Random Access 를 수행하기 때문에 참조 객체의 인접함이 큰 장점이 되지 못함.
+- Mark - Sweep - Compaction 이 완료되면 새로운 주소로 모든 참조를 변경하는 작업을 수행. Compaction 작업으로 인해 메모리 공간의 효율성을 가지는건 큰 장점이 되지만 모든 참조를 변경하는 작업을 위해 모든 객체를 액세스 하는 등의 오버헤드가 수반 됨. 
+- Mark, Compaction Phase 모두 Suspend 현상 발생.
+
+#### Copying Algorithm
+- 단편화 문제를 해결하기 위해 제시 된 또다른 방법.
+- Heap 을 Active 영역과 Inactive 영역으로 구분. Active 영역에만 객체를 할당 받을 수 있고 Active 영역이 꽉차게 되면 GC 가 수행 됨.
+- GC 가 수행되면 모든 프로그램은 Suspend. Live Object 를 Inactive 영역으로 복제함 (Live Object 판단 알고리즘은 아마도 위에서 소개한 Mark 방식). 복제 과정에서 복제 되는 각 객체의 참조 정보도 변경 됨. 복제할때는 한쪽 방향에서부터 차곡차곡 적재하기 때문에 Compaction 수행과 동일한 효과가 있음.
+- 복제 과정이 끝나면 Active 영역에 Garbage 객체가, Inactive 영역에는 Live Object 남게 되고 GC 가 완료되는 시점에 Active 영역은 Free Memory 가 두 영역이 서로 바뀜. 이를 Scavenge 라고 함 (Garbage Object 라는 용어로부터 시작하여 작명이 재밌다고 생각 함.). Root Set 의 참조도 복제 된 객체를 향하게 됨.
+- Active 와 Inactive 영역은 특정 메모리 번지 구간을 지칭하는 것이 아닌 현재 Allocation 을 하면서 사용하는 공간과 대기 공간의 논리적인 구분임.
+- 이 알고리즘은 단편화 방지에는 효과적이지만 전체 Heap 의 절반 정보 밖에 사용하지 못하는 단점과 객체를 복제하는 과정의 오버헤드는 필요악이라고 할 수 있다고 설명.
+
+#### Generational Algorithm
+- 대부분의 프로그램에서 생성되는 대다수 객체는 짧은 생애주기를 가지고 일부만이 수명이 길다.
+- 이런 경험적 지식을 통해 Copying Algorithm 의 대안으로 등장한 알고리즘.
+- Heap 을 Active, Inactive 로 나누는 것이 아니라 Age 별로 몇 개의 Sub Heap 으로 나눔.
+- 객체는 최초에 Youngest Generation Sub Heap 에 할당 되고 몇 번의 Mark 과정을 거치면서 Dead 상태가 되지 않으면 Age 가 추가 됨. Age 가 일정 수치를 넘기면 Matured 객체가 되어 다음 Generation 으로 Promotion 됨. (Promotion 은 다음 Sub Heap 으로 복제되는 것을 의미 함.)
+- 메모리 단편화, 복제 오버헤드 등 이전 알고리즘의 단점을 상당 부분 극복한 알고리즘. Youngest Generational Sub Heap 에서는 Mark-Sweep 알고리즘, Promotion 과정에서는 Copying 알고리즘과 흡사하게 진행 됨.
+- Age, Matured, Promotion 이런 네이밍들이 굉장히 재밌음. Promotion 은 전체적인 문맥에서 조금 어색한 것 같기도 함 :)
+
+#### Train Algorithm
+- Incremental Algorithm 이라고도 함.
+- Mark-and-Sweep Algorithm 등장 이후 GC 를 수행할 때 프로그램에 Suspend 현상이 나타나는 것은 감수할 수 밖에 없는 일이었음. WAS 와 같이 짧은 트랜잭션을 처리하는 시스템의 경우 불규칙적인 Suspend 현상은 사용자에게 불쾌감을 줄 수 있음.
+- 이런 문제를 극복하고자 Heap 을 작은 Memory Block 단위로 나누어 Single Block 단위로 Mark Phase 와 Copy Phase 로 구성된 GC 수행.
+- Single Block 단위로 GC 를 수행하는만큼 Heap 의 Suspend 가 GC 수행중인 Memory Block 에만 Suspend 가 발생함.
+- Pause Time 을 분산하여 장시간 Suspend 는 피할 수 있는 장점이 있지만 개별 Suspend 시간을 모두 합하면 다른 알고리즘보다 Suspend 시간이 더 많아질 수 있다는 문제점이 있음.
