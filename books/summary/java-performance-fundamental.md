@@ -2,6 +2,8 @@
 
 > 김한도 저. 엑셈 출판. 2009.
 
+본 내용은 책 내용에 대한 개인적 이해를 바탕으로 한 요약과 생각이므로 정확한 내용은 반드시 책을 참고하길 권장함.
+
 ## CH1. JVM
 > Write Once, Run Everywhere
 
@@ -239,3 +241,25 @@ GC 알고리즘은 크게 Garbage Object 를 찾아내는 부분(Detection)과 �
 - 이런 문제를 극복하고자 Heap 을 작은 Memory Block 단위로 나누어 Single Block 단위로 Mark Phase 와 Copy Phase 로 구성된 GC 수행.
 - Single Block 단위로 GC 를 수행하는만큼 Heap 의 Suspend 가 GC 수행중인 Memory Block 에만 Suspend 가 발생함.
 - Pause Time 을 분산하여 장시간 Suspend 는 피할 수 있는 장점이 있지만 개별 Suspend 시간을 모두 합하면 다른 알고리즘보다 Suspend 시간이 더 많아질 수 있다는 문제점이 있음.
+
+### Hotspot JVM 의 Garbage Collection
+Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을 Generation 으로 나누어 사용.
+- Young Generation 에 해당하는 곳은 Eden 영역과 Survivor 영역이 존재.
+- Old Generation 에 해당하는 것은 Tenured. 객체가 직접 할당되는 곳이 아닌 Eden 영역에서 성숙된 객체들이 프로모션 되는 곳. 크기에 따라 바로 Allocation 되는 경우도 있다고 함.
+- GC 알고리즘을 연구하고 적용하며 얻은 경험적 지식으로 Weak generational 가설을 세우고 Generational Algorithm 에서는 Heap 을 Generation 으로 나누어 구성함. 
+- [Oracle - GC Tuning Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/generations.html) 의 Generations 과 [Plumbr – Java Garbage Collection handbook](https://plumbr.io/handbook/garbage-collection-in-java/generational-hypothesis) 에 좀 더 자세히 적혀 있음.
+
+#### Weak generational hypothesis
+- 높은 유아사망률 (High Infant Mortality). 새로 생성 된 대부분의 객체가 얼마 되지 않아 Garbage 가 된다. 즉, Young Generation 에 빈번하게 GC가 발생하고 이에 따라 단편화 발생 확률이 높다.
+- Young Generation 을 대상으로 하는 GC 를 Minor GC 라고 함.
+- 드물긴 해도 Older 객체가 Young 객체를 참조 하는 경우가 있음. 이를 확인하기 위해선 Minor GC 시에도 Older Generation 을 확인해야 함.
+- 이를 해결하기 위한 기술이 Card Table 과 Write Barrier.
+- Card Table 은 Old Generation 의 메모리를 대표하는 별도의 메모리 구조를 의미. Young 객체를 참조하는 Old 객체가 있다면 Old 객체의 시작 주소에 해당하는 카드에 Dirty 를 표시. Old Generation 메모리 512 Bytes 당 1 Byte 의 카드를 가짐.
+- Write Barrier 는 Execution Engine 에 포함 된 코드로 Card Table 에 Dirt 표시 / 해제 하는 작업을 수행하는 코드.
+- 이 두 기술을 통해 Old Generation 을 다 확인하지 않고 참조 여부를 확인할 수 있음.
+- 이 과정에 대한 설명은 [NAVER D2 - Java Garbage Collection](https://d2.naver.com/helloworld/1329) 에 그림과 함께 정리 되어 있음.
+
+#### Full GC
+- Minor GC 의 결과, 충분히 성숙 된 객체는 프로모션이 발생. 이 과정에서 Old Generation 의 메모리가 충분치 않으면 Old Generation 에도 GC 가 발생. 이것을 Full GC 또는 Major GC 라 함.
+- 책에서는 Old Generation 에 GC 가 발생하는 것을 Full 또는 Major GC 라고 한다고 되어 있으나, [Plumbr - Minor GC vs Major GC vs Full GC](https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc) 내용에 따르면  Full GC 는 전체 Heap 을 대상으로, Major GC 는 Old Generation 을 대상으로 하는 것.
+- Permanent Area 의 메모리 압박 상황에도 GC 가 발생함. 즉, 너무 많은 수의 Instance 가 로딩되어 Permanent Area 가 부족하게 되면 Heap 에 Free Space 가 많더라도 Full GC 발생.
