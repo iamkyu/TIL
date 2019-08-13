@@ -263,3 +263,18 @@ Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을
 - Minor GC 의 결과, 충분히 성숙 된 객체는 프로모션이 발생. 이 과정에서 Old Generation 의 메모리가 충분치 않으면 Old Generation 에도 GC 가 발생. 이것을 Full GC 또는 Major GC 라 함.
 - 책에서는 Old Generation 에 GC 가 발생하는 것을 Full 또는 Major GC 라고 한다고 되어 있으나, [Plumbr - Minor GC vs Major GC vs Full GC](https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc) 내용에 따르면  Full GC 는 전체 Heap 을 대상으로, Major GC 는 Old Generation 을 대상으로 하는 것.
 - Permanent Area 의 메모리 압박 상황에도 GC 가 발생함. 즉, 너무 많은 수의 Instance 가 로딩되어 Permanent Area 가 부족하게 되면 Heap 에 Free Space 가 많더라도 Full GC 발생.
+
+### Hotspot JVM 의 Garbage Collector
+![자바6 까지의 Hotspot JVM Garbage Collector](https://user-images.githubusercontent.com/13076271/61193978-a366c680-a6f9-11e9-87a4-ccfac079a4d0.png)
+> 출처: Java Performance Fundamental. 김한도 저. 엑셈 출판. 2009. 118P
+
+- 이 책은 2009년 쓰인 책으로 Java SE 7 릴리즈 전에 쓰임. 하지만 Java 6 Update 14 부터 G1 Collector 가 포함 되어 G1 도 간략하게 소개함.
+- Serial Collector 는 가장 기본적인 Collector 로 Default Collector 라고도 불림.
+- Serial Collector 등장 후 IT 환경이 급변, 점점 더 큰 Heap 크기를 필요로 하게 됨. Heap 커짐에 따라 Suspend 현상이 두드러졌는데 Application 에는 실시간에 가까운 성능을 요구.
+- 이에 따라 Collector 가 크게 두 가지 전략으로 분화되어 발전. (1) 모든 리소스를 투입하여 Garbage Collector 를 빨리 끝내는 전략 (2) Suspend 를 분신시켜 체감 Pause Time 을 줄이는 전략
+- Parallel, Parallel Compacting Collection 가 전자에 해당. CMS, Incremental Collector 가 후자에 해당함. Incremental Collector 는 자바 5부터 사용할 수 없었음.
+
+> G1 is planned as the long term replacement for the Concurrent Mark-Sweep Collector (CMS). Comparing G1 with CMS, there are differences that make G1 a better solution. -  [Oracle - Getting Started with the G1 Garbage Collector](https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html)
+- 자바 7부터 지원한 G1 (Garbage-First)  Collector 는 Oracle 문서에 따르면 CMS Collector 를 대체하기 위해 등장했다고 함. 
+- 자바 11부터 등장한 ZGC 도 있음. 자세히 살펴보지는 못함. [Oracle - An Introduce The Z Garbage Collector (PDF)](http://cr.openjdk.java.net/~pliden/slides/ZGC-FOSDEM-2018.pdf)
+- 책을 쓰던 시점에 저자는 Collector 의 발전 추이를 보며 Throughput 과 Low Pause 전략이 더 발전해 나가다 결국 Parallel-Concurrent 로 수렴될 것으로 예상함.
