@@ -278,3 +278,33 @@ Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을
 - 자바 7부터 지원한 G1 (Garbage-First)  Collector 는 Oracle 문서에 따르면 CMS Collector 를 대체하기 위해 등장했다고 함. 
 - 자바 11부터 등장한 ZGC 도 있음. 자세히 살펴보지는 못함. [Oracle - An Introduce The Z Garbage Collector (PDF)](http://cr.openjdk.java.net/~pliden/slides/ZGC-FOSDEM-2018.pdf)
 - 책을 쓰던 시점에 저자는 Collector 의 발전 추이를 보며 Throughput 과 Low Pause 전략이 더 발전해 나가다 결국 Parallel-Concurrent 로 수렴될 것으로 예상함.
+
+### 자바 버전별 기본 Garbage Collector
+- 특정 GC 를 지정하지 않으면 JVM 은 [Ergonomics](https://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/ergonomics.html#ergonomics) 프로세스를 통해 적절한 Garbage Collector 를 선택함.
+- 하드웨어와 OS 를 기준으로 크게 두 분류로 구분. 2 개 이상의 CPU, 2GB 이상의 메모리, 32 Bit 의 Windows 를 제외한 시스템의 경우 Server Class, 반대의 경우 Client Class 분류.
+- Java 7&8 - Server: Parallel / Client: Serial
+- Java 9 - G1
+
+#### Serial Collector
+- 한 개의 스레드로 GC 를 수행.
+- Java 8 이하에서 Client Class 의 기본 Garbage Collector.
+- Young Generation 에는 Generational Algorithm 을, Old Generation 에는 Mark-and-Compacting Algorithm 을 사용함.
+- Young Generation GC
+	- Young Generation 의 Survivor 영역은 다시 From 과 To 로 나뉨. 이 구분은 (Hotspot JVM 을 기준으로) 단지 논리적인 구분임. Minor GC 이후에 두 공간의 Flip 하여 사용함.
+	- Mark Phase -> Eden 영역과 From 영역에서 Live Mark 된 Object 를 To 영역으로 Copy -> Eden 과 From 영역을  대청소(Scavenge) -> 성숙된(Matured) Object 는 Old Generation 으로 Promotion
+	- 성숙된 Object 의  기준은 Object Header 에 기록 된 Age 로 판단. Age 는 Minor GC 때 살아남은 횟수를 의미.
+	- 성숙의 기준은 `-XX:MaxTenuringThreshold` 옵션으로 설정할 수 있는데 기본 값이 31, 임의로 설정할 수 있는 값도 최대 31이라고 되어 있음. 하지만 [Oracle - Do Not Set -XX:MaxTenuringThreshold to a Value Greater Than 15](https://support.oracle.com/knowledge/Middleware/1283267_1.html) 문서에 따르면 Java 1.5.0_06 이상부터 최대 값은 15라고 되어 있음. 동작하고 있는 JVM 에서 `$ java -XX:+PrintFlagsFinal -version | grep MaxTenuringThreshold` 커맨드를 통해 해당 옵션에 지정된 값을 확인할 수 있음.
+- Old Generation GC
+	- Old Generation 은 GC 가 자주 발생하진 않지만 발생하면 Minor GC 보다 Suspend 시간이 길어짐.
+	- Young Generation 보다 크기도 하고 수행방식에 차이가 있기 때문.
+	- 알고리즘 자체도 Generational 에 비해 Garbage 를 Sweep - Compaction 하는 시간을 많이 필요로 함.
+	- 또한, Old Generation 에 GC 가 수행되는 이유는 Promotion 때문인데 Minor GC 와중에 Promotion 을 위한 메모리 공간이 부족해 Major GC 가 연쇄적으로 수행되기 때문임.
+
+#### Incremental Collector
+- Low Pause Goal 을 충족하기 위한 최초의 Collector.
+- Young Generation 에는 Generational Algorithm 을, Old Generation 에는 Train Algorithm 을 사용함.
+- Suspend 시간을 줄여준다는 장점에도 불구하고 자바 6에서 공식적으로 사라짐. 저자는 다음과 같은 단점때문이 아닌가 추측함.
+	- 각 Memory Block 을 가득차게 쓰는 것이 힘들어 Old Generation 이 커질수록 Memory Block 의 단편화 현상이 심화됨.
+	- Minor GC 를 수행할때 Old Generation 의 GC 대상 Single Memory Block 을 선택하는 작업의 오버헤드.
+	- Remember Set 의 Storage 오버헤드.
+- 반면, Train Algorithm 아이디어 자체는 좋은 평가를 받아 G1 Collector 에서 해당 알고리즘을 발전시켜 사용.
