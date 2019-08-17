@@ -308,3 +308,23 @@ Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을
 	- Minor GC 를 수행할때 Old Generation 의 GC 대상 Single Memory Block 을 선택하는 작업의 오버헤드.
 	- Remember Set 의 Storage 오버헤드.
 - 반면, Train Algorithm 아이디어 자체는 좋은 평가를 받아 G1 Collector 에서 해당 알고리즘을 발전시켜 사용.
+
+#### Parallel Collector
+- 멀티스레드로 GC 를 수행. 하지만 Old Generation 의 GC 는 Serial Collector 와 동일하고 Young Generation 에만 국한 됨.
+- Parallel Collector 의 Parallel Copy Algorithm 은 Generational Algorithm 과 차이가 없지만 Young Generation 영역의 Live Object 의 Copy 과정을 여러 스레드가 동시에 수행.
+- 단, 메모리 공간을 두 Thread 혹시 Process 가 접근함으로 발생하는 Corruption 을 회피하기 위해 동기화 작업을 수반하면 Promotion 성능이 떨어짐.
+- 이를 극복하기 위해 PLAB (Parallel Local Allocation Buffer) 를 마련. GC Thread 가 Promotion 시 베타적으로 사용하기 위해 스레드 마다 Old Generation 의 일정 부분을 할당해 놓는 것.
+- 하지만 이 방법도 Old Generation 에 단편화 문제가 발생. 많은 수의 스레드가 자신의 Buffer 를 할당 받은 채 사용하지 않거나, 어쩔 수 없이 발생하는 Buffer 내 자투리 공간이 Heap 단편화의 원인이 도리 수 있음. 이 경우 GC Thread 를 감소시키거나 Old Generation 의 Size 를 늘리는 방법으로 문제를 회피할 수 있음.
+
+#### CMS(Concurrent Mark-Sweep) Collector
+- 비교적 자원이 여유 있는 상태에서 GC 의 Pause Time 을 줄이고자 하는 목적에 가장 부합.
+- Parallel Collector 와 동일하게 Young Generation 에는 Parallel Copy Algorithm 을, Old Generation 에는 Concurrent Mark-Sweep Algorithm 을 사용.
+- Concurrent Mark-Sweep Algorithm 은 다음 단계로 구성
+	- 1. Initial Mark 단계로 싱글스레드가 애플리케이션에서 직접 참조 되는 Live Object 를 구별. Heap 은 Suspend 상태가 되지만 Root Set 에서 직접 참조 되는 Object 만을 대상으로 하기 때문에 시간은 최소화 됨.
+	- 2. Concurrent Mark 단계는 싱글스레드가 1단계에서 선별된 Object 를 대상으로 참조 Object 를 추적하여 Live 여부 구별. GC 스레드 외 Working 스레드들은 애플리케이션을 수행할 수 있음.
+	- 3. Remark 단계는 유일한 Parallel 단계로 모든 스레드가 GC 에 동원됨. 이로 인해 애플리케이션은 잠시 수행이 중지 됨. 이 단계에서 이미 Marking 된 Object 를 다시 추적하여 Live 여부 확정. 
+	- 4. Concurrent Sweep 단계도 애플리케이션과 GC 의 동시작업(Concurrent)이 가능. Remark 작업을 통해 최종적인 Dead Object 제거 작업 수행. 하지만 Compacting  작업은 수행하지 않음.
+- Compacting 작업을 위해서는 Heap 의 Suspend 를 전제로 해야 하는데 CMS Collector 는 이를 수행하지 않음으로써 GC 동안에도 애플리케이션의 수행을 보장. 그러나 반복 된 Sweep 은 연속된 Free Space 가 감소되는 부작용을 가지고 옴.
+- 이를 해결하기 위해 FreeList 를 사용하여 프로모션 되는 Object 사이즈를 계속 통계화하여 미래 요구량을 추정하고, Object 프로모션 되면 크기가 비슷한 Free Space 를 탐색하여 할당. 반면, 이 방법은 Young Generation 의 부담을 가중시킴. FreeList 를 통해 할당이 적합한 공간을 탐색하는 과정이 추가 되기 때문. 이로 인해 프로모션 되어야 할 Object 들이 Eden 또는 Survivor 영역에서 체류시간이 길어지는 결과를 낳지만 Compacting 이 워낙 고비용 작업이기 때문에 손익 비교가 필요함. 예컨대, 프로모션이 빈번하지 않다면 이를 통해 얻는 성능상 이득이 큼. 
+- CMS Collector 는 Floating Garbage 문제도 발생 할 수 있음. 때문에 Collection 에서 Schedule 을 고려.
+- 참고로 2019년 8월에 [OpenJDK JEP](https://openjdk.java.net/jeps/8229049) 에는 CMS Collector 를 제거하는 draft 가 제안됨
