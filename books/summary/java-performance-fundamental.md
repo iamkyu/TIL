@@ -328,3 +328,11 @@ Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을
 - 이를 해결하기 위해 FreeList 를 사용하여 프로모션 되는 Object 사이즈를 계속 통계화하여 미래 요구량을 추정하고, Object 프로모션 되면 크기가 비슷한 Free Space 를 탐색하여 할당. 반면, 이 방법은 Young Generation 의 부담을 가중시킴. FreeList 를 통해 할당이 적합한 공간을 탐색하는 과정이 추가 되기 때문. 이로 인해 프로모션 되어야 할 Object 들이 Eden 또는 Survivor 영역에서 체류시간이 길어지는 결과를 낳지만 Compacting 이 워낙 고비용 작업이기 때문에 손익 비교가 필요함. 예컨대, 프로모션이 빈번하지 않다면 이를 통해 얻는 성능상 이득이 큼. 
 - CMS Collector 는 Floating Garbage 문제도 발생 할 수 있음. 때문에 Collection 에서 Schedule 을 고려.
 - 참고로 2019년 8월에 [OpenJDK JEP](https://openjdk.java.net/jeps/8229049) 에는 CMS Collector 를 제거하는 draft 가 제안됨
+
+#### Parallel Compaction Collector
+- Parallel Collector 에서 Old Generation 에 새로운 알고리즘을 추가한 콜렉터.
+- Young Generation 에서는 Parallel Copy Algorithm 을, Old Generation 에서는 Parallel Copy Algorithm 을 추가하여 사용.
+- 다음 단계로 GC  수행.
+	- 1. Mark Phase. Parallel 로 작업이 수행. Old Generation 을 Region 이라는 논리적이고 2Kbytes 정도의 청크 단위로 나누고 Collection 스레드들이 각 Region 별로 Live Object 를 마킹.
+	- 2. Summary Phase 는 단일 스레드가 1단계의 결과인 Region 마다의 통계 정보를 바탕으로 각 Region 의 Density 평가. 이는 각 Region 의 Reachable Object 의 밀도를 나타냄. Density 를 바탕으로 Reachable Object 가 대부분을 차지하는 Region 이 어디까지인지를 구분하여 Dense Prefix 를 설정. Prefix 왼편의 있는 Region 은 GC 대상에서 제외됨.
+	- 3. Compaction Phase 는 Heap 을 Suspend 상태로 만들고 모든 스레드가 각 Region 을 Compacting 하는 작업 수행. Garbage Object 를 Sweep 하고 Reachable Object 를 왼편으로 몰아 넣음.
