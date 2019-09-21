@@ -336,3 +336,24 @@ Hotspot JVM 의 GC 는 Generational Algorithm 을 기반으로 함. 즉 Heap 을
 	- 1. Mark Phase. Parallel 로 작업이 수행. Old Generation 을 Region 이라는 논리적이고 2Kbytes 정도의 청크 단위로 나누고 Collection 스레드들이 각 Region 별로 Live Object 를 마킹.
 	- 2. Summary Phase 는 단일 스레드가 1단계의 결과인 Region 마다의 통계 정보를 바탕으로 각 Region 의 Density 평가. 이는 각 Region 의 Reachable Object 의 밀도를 나타냄. Density 를 바탕으로 Reachable Object 가 대부분을 차지하는 Region 이 어디까지인지를 구분하여 Dense Prefix 를 설정. Prefix 왼편의 있는 Region 은 GC 대상에서 제외됨.
 	- 3. Compaction Phase 는 Heap 을 Suspend 상태로 만들고 모든 스레드가 각 Region 을 Compacting 하는 작업 수행. Garbage Object 를 Sweep 하고 Reachable Object 를 왼편으로 몰아 넣음.
+
+#### Garbage First (G1) Collector
+이 책은 G1 이 갓 등장한 시점에 쓰였기 때문에 다음 자료를 추가로 참고함.
+- 자바성능튜닝. 스캇 오크스 저. 최가인 역. 비제이퍼블릭 출판. 2016.
+- 자바최적화. 벤저민 J. 에번스 외 2명 저. 이일웅 역. 한빛미디어. 2019.
+- [Oracle - Getting Started with the G1 Garbage Collector](https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html)
+
+기존 Generation 기반의 Collector 들과는 다른 구조를 지님. 장기적으로는 CMS Collector 를 대체하기 위해 등장.
+
+> G1 is planned as the long term replacement for the Concurrent Mark-Sweep Collector (CMS). Comparing G1 with CMS, there are differences that make G1 a better solution. One difference is that G1 is a compacting collector. G1 compacts sufficiently to completely avoid the use of fine-grained free lists for allocation, and instead relies on regions. This considerably simplifies parts of the collector, and mostly eliminates potential fragmentation issues. Also, G1 offers more predictable garbage collection pauses than the CMS collector, and allows users to specify desired pause targets.
+> - [Oracle Tutorials: Getting Started with the G1 Garbage Collector](https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html)
+
+- Generation 기반의 Young, Old 물리적 구분 방식은 Weak generational hypothesis 에 따라 Young Generation 에 집중함으로써 효율을 높일 수 있었음.
+- 반면, CMS Collector 등에서 나타난 것 처럼 Old Generation 의 파편화, Freelist 사용으로 인한 문제, Suspend Time 의 길어짐 등 결국 Stop-The-Word 방식의 Compaction 으로 회귀할 수 밖에 없는 상황이 됨.
+- 그래서 G1 은 물리적인 Generation 의 구분을 없애고 전체 Heap 을 1Mb 단위의 Region 으로 재편. (Heap 이 클수록 크기가 커짐. 최소 1Mb - 최대 32Mb)
+- Garbage 로만 꽉 차 있는 Region 부터 Collection 을 시작한다고 해서 Garbage First Collector 라는 이름이 붙여짐. 
+- Garbage Region 은 발견되자 마자 즉각적으로 Collection 이 이루어짐. Garbage Object 가 대부분인 Region 의 경우 Live Object 는 Old Region 에서 다른 Old Region 으로 Compaction  이 이루어짐.
+- 이전 Collector 들과 달리 Young 과 Old 는 개념적인 구분이고 연속되어 있지 않은데, Object 가 새로 할당되는 Region 의 집합을 Young, Promotion 되는 Region 의 집합을 Old 라고 칭함.
+- Minor GC 가 발생하면 Young Generation 의 Region 을 대상으로 Reachable Object  를 찾아내 Age 가 되지 않는 Object 는 Survivor Region 으로, Promotion 대상은 Old Generation 으로 Copy. 그 후 기존의 Young Generation Region 은 Garbage 로 간주하여 Region 단위로 할당을 해지. 이렇게 Young Generation 의 Collection 이 끝나면 바로 Old Generation 의 GC 가 시작됨.
+- 철저하게 Region 단위로 GC 가 발생하기 때문에 이로 인한 Suspend 현상도 Region 을 사용하는 Thread 에 국한 됨.
+- G1 이 Region 내 Reference 를 관리하는 방법은 Remember Set 을 이용. 전체 Heap 의 5% 미만 정도의 공간을 각 Region 참조 정보 (Region 내부 정보가 아닌) 를 저장하는 공간으로 할당. 따라서 내부를 바라보는 레퍼런스를 찾으려고 전체 힙을 뒤질 필요가 없음.
