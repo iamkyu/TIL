@@ -14,7 +14,6 @@
 ## Object-oriented design
 
 - [클린소프트웨어. 로버트 C 마틴. 이용원 역. 제이펍. 2017](summary/clean-software.md)
-- [엔터프라이즈 애플리케이션 아키텍처 패턴. 마틴파울러 저. 최민석 역. 위키북스. 2015](summary/poeaa.md)
 - [객체 지향과 디자인 패턴. 최범균. 인투북스. 2013](summary/oop-and-design-pattern.md)
 - [객체지향의 사실과 오해. 조영호. 위키북스. 2015](summary/the-essence-of-oo.md)
 - [패턴 그리고 객체지향적 코딩의 법칙. 문우식. 한빛미디어. 2007](summary/pattern-and-oop.md)
@@ -22,6 +21,14 @@
 - [GOF의 디자인 패턴. Gang of four 저. 김정아 역. 프로텍미디어. 2015](summary/gof.md)
 - [실전 코드로 배우는 실용주의 디자인 패턴. 앨런 홀럽. 송치형 역. 사이텍미디어. 2006](summary/holub.md)
 - [오브젝트. 조영호. 위키북스. 2019](summary/object.md)
+
+
+
+## Architecture
+
+- [클린아키텍처. 로버트마틴. 송준이 역. 인사이트. 2019](summary/clean-architecture.md)
+- [데이터 중심 애플리케이션 설계. 마틴 클레프만. 정재부 외 2명 역. 위키북스. 2018](summary/ddia.md)
+- [엔터프라이즈 애플리케이션 아키텍처 패턴. 마틴파울러 저. 최민석 역. 위키북스. 2015](summary/poeaa.md)
 
 
 
@@ -49,7 +56,6 @@
 - [Release It. 마이클 나이가드 저. 신승환, 정태중 역. 위키북스. 2007](summary/release-it.md)
 - [클린코더. 로버트마틴. 정희종 역. 에이콘출판. 2016](summary/the-clean-coder.md)
 - [클린코드. 로버트마틴. 박재호, 이해영 역. 인사이트. 2013](summary/clean-code.md)
-- [클린아키텍처. 로버트마틴. 송준이 역. 인사이트. 2019](summary/clean-architecture.md)
 - [누워서 읽는 알고리즘. 임백준. 한빛미디어. 2013](summary/algorithm-in-bed.md)
 - [미래를 바꾼 아홉 가지 알고리즘. 존 맥코믹. 민병교 역. 에이콘출판. 2013](summary/nine-algorithms.md)
 - [생각하는프로그래밍. 존 벤틀리. 윤성준 외 역. 인사이트. 2013](summary/programming-pearls.md)
