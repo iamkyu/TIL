@@ -1,4 +1,5 @@
 # Today I Learned
+- [2020Q4](til/2020q4.md)
 - [2020Q2](til/2020q2.md)
 - [2020Q1](til/2020q1.md)
 - [2019Q4](til/2019q4.md)
