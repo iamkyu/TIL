@@ -29,6 +29,7 @@
 - [클린아키텍처. 로버트마틴. 송준이 역. 인사이트. 2019](summary/clean-architecture.md)
 - [데이터 중심 애플리케이션 설계. 마틴 클레프만. 정재부 외 2명 역. 위키북스. 2018](summary/ddia.md)
 - [엔터프라이즈 애플리케이션 아키텍처 패턴. 마틴파울러 저. 최민석 역. 위키북스. 2015](summary/poeaa.md)
+- [Get Your Hands Dirty on Clean Architecture. 톰홈버그스 저.  Packt. 2019](summary/get-your-hands-ca.md)
 
 
 
