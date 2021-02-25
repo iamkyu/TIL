@@ -76,6 +76,9 @@
 ## 클린아키텍처와 육각아키텍처 (Clean Architecture & Hexagonal Architecture)
 
 - 로버트 C 마틴이 소개한 클린아키텍처와 콕번의 육각아키텍처에 대한 소개
+- [https://alistair.cockburn.us/hexagonal-architecture/](https://alistair.cockburn.us/hexagonal-architecture/)
+- [https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- 육각형에 특별한 의미는 없음. 단지 애플리케이션 다양한 어댑터들이 연결될 수 있다는걸 나타내기 위해 사각형 대신 육각형으로 나타냈다고 함.
 
 # Chapter 3. Orginizing Code
 
@@ -88,26 +91,30 @@
 
 - DI 를 적용한 domain, persistence, web 으로 구분한 패키지 구조 소개
 - 그리고 이 구조의 두가지 문제를 설명.
-  - 1) 도메인 기능간에 패키지 경계가 없음. 만약 사용자 관리 기능을 추가 한다면 현재의 패키지 구조에 UserController - UserService - UserRepository - User 를 추가할 것임. 이렇게 계속 추가됨으로써 패키지는 엉망이 됨.
-  - 2) 유즈 케이스가 명확히 드러나지 않음. AccountService 는 뭘 하는걸까? 정확한 어떤 기능에 관한 로직을 찾고자 할 때 혼란스러움.
+- 1) 도메인 기능간에 패키지 경계가 없음. 만약 사용자 관리 기능을 추가 한다면 현재의 패키지 구조에 UserController - UserService - UserRepository - User 를 추가할 것임. 이렇게 계속 추가됨으로써 패키지는 엉망이 됨.
+- 2) 유스 케이스가 명확히 드러나지 않음. AccountService 는 뭘 하는걸까? 정확한 어떤 기능에 관한 로직을 찾고자 할 때 혼란스러움.
+- 3) web, persistence 패키지만 보고는 in, out 을 구분할 수 없다고는 하는데 딱히 공감은 안됨.
 
 ## 기능 단위 패키지
 
 ![https://user-images.githubusercontent.com/13076271/101280215-3fbbcc80-380b-11eb-8b13-daaf323aec2d.png](https://user-images.githubusercontent.com/13076271/101280215-3fbbcc80-380b-11eb-8b13-daaf323aec2d.png)
 
 - 계층 기반 패키지와 달리 기능 단위로 패키지. account 라는 패키지 아래 controller, service, repository, entity 가 모두 존재.
+- AccountService 도 SendMoneyService 로 이름이 바뀜. 클래스 이름으로 유스케이스를 바로 찾아낼 수 있음.
 - account 아래 모든 컴포넌트들의 가시성은 package-private. 다른 기능과 의존성이 섞이지 않음.
 - 계층 기반 패키지의 단점을 어느 정도 보완했지만 이 방식 역시 단점이 존재.
-- 외부로 in, out 되는 부분을 식별하기 어렵고 DI 를 적용하긴 했지만 한 패키지에 섞여 있기 때문에 도메인 코드에 구체적인 영속성 코드가 침범하는 실수를 범하기 쉬움.
+- 외부로 in, out 되는 부분을 식별하기 어렵고 DI 를 적용하긴 했지만 한 패키지에 섞여 있기 때문에 도메인 코드에 영속성 코드가 침범하는 실수를 범하기 쉬움.
 
-## An Architecturally Expressive Package Structure
+## 아키텍처를 드러내는 패키지
 
 ![https://user-images.githubusercontent.com/13076271/101280234-58c47d80-380b-11eb-8d5e-698af3bd0e1c.png](https://user-images.githubusercontent.com/13076271/101280234-58c47d80-380b-11eb-8d5e-698af3bd0e1c.png)
 
 - 이 구조는 architecture-code-gap 또는 [model-code-gap](https://www.ben-morris.com/most-architecture-diagrams-are-useless/) 이라고 불리는 아키텍처와 코드의 간극을 극복하는데 굉장한 도움이 됨.
 - 이 구조는 굉장히 많은 패키지를 가지고 있어 복잡하지만 각 패키지의 목적이 명확하여 수정이 필요할 때 어디를 손대야 할 지 파악이 쉬움. 가시성 역시 구분되어 침범하지 말아야 할 패키지를 침범 할 걱정을 하지 않아도 됨.
-- 또한 DI 를 통해 도메인 로직이 in, out 어댑터에 직접적으로 의존하지 않음.
-- DDD 컨셉을 반영하는 구조이기도 함.
+- 상위 레벨의 account 라는 패키지명은 Account 에 관한 유스케이스가 모여 있다는걸 알 수 있게 함
+- 차상위 레벨중 application  패키지의 SendMoneyService 는 incoming port 인터페이스를 구현함. 반면, out 아래 인터페이스의 구현은 영속성 계층에서 하게 될 것임.
+- 차상위 레벨 중 adapter 패키지는 in, out 의 구현체가 존재함.
+- 핵사고날 아키텍처를 그대로 드러내는 이 패키지 구조는 개발자간의 커뮤니케이션을 쉽게함.
 
 ```
 4장 부터는 예제소스와 보는 것이 좋음 https://github.com/thombergs/buckpal
