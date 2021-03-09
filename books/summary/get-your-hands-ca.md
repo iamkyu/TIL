@@ -214,3 +214,9 @@ Account 엔티티 예제
     - 릴리즈때 마음이 편할 수 있을만큼 테스트하라고 함.
     - 버그가 발생하면 해당 버그를 커버하는 테스트를 추가.
     - 반면, 필드 하나를 추가했는데  테스트를 수정하느라 많은 시간을 보낸다면 뭔가 잘못된 것. 코드 구조 변경에 테스트가 너무 취약한 것.
+
+
+# Chapter8. Mapping Between Boundaries
+
+- 각 계층의 경계마다 다른 모델을 사용하는 방법부터 모두 같은 모델을 사용하는 전략까지. 4가지의 맵핑 전략과 그에 따른 장단점 소개
+- 인상 깊은 구절은 "the strategy that was the best for the job yesterday might not still be the best for the job today"
