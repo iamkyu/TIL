@@ -11,3 +11,8 @@
 - Airbnb’s Server-Driven UI System(SDUI) is a server-side system and controlled UI and the data.
 - Response of SDUI contains how sections are arranged in that layout, the data displayed in each section, and even the actions taken when users interact.
 - It resolves disadvantages traditional client-driven UI.
+
+[What is cloud-native? What to know for your interview](https://blog.devgenius.io/what-is-cloud-native-what-to-know-for-your-interview-dc8da4fc1728)
+- Cloud-native development is designing enhance modern application development by employing the scalability, resiliency, and flexibility that the cloud provides. 
+- Microservice, Serverless function, Containerization are important keywords in Cloud-native architecture.
+- Microservice and Containerization provides advantage in portability, reduces downtime, fast development time.
