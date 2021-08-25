@@ -16,3 +16,8 @@
 - Cloud-native development is designing enhance modern application development by employing the scalability, resiliency, and flexibility that the cloud provides. 
 - Microservice, Serverless function, Containerization are important keywords in Cloud-native architecture.
 - Microservice and Containerization provides advantage in portability, reduces downtime, fast development time.
+
+[Everything you need to know about Caching — System Design](https://levelup.gitconnected.com/everything-you-need-to-know-about-caching-system-design-932a6bdf3334)
+- Caching works on the principle of ‘locality of reference’. The primary goal of a Cache is to reduce the read latency and amplify the throughput of any application. 
+- Core Concepts in Caching are TTL and Eviction Policy.
+- There are two cache write policies. ‘Write Through Cache’ and ‘Write Back Cache’.
