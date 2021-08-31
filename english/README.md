@@ -21,3 +21,8 @@
 - Caching works on the principle of ‘locality of reference’. The primary goal of a Cache is to reduce the read latency and amplify the throughput of any application. 
 - Core Concepts in Caching are TTL and Eviction Policy.
 - There are two cache write policies. ‘Write Through Cache’ and ‘Write Back Cache’.
+
+[Full Cycle Developers at Netflix — Operate What You Build](https://netflixtechblog.com/full-cycle-developers-at-netflix-a08c31f83249)
+- Netflix Edge Engineering Team was divided into a development team and an operations team.
+- When things didn’t go well, the costs added up. Communication and knowledge transfers between devs and ops.
+- They finally created a model called "Full Cycle Develop". Full cycle developers are expected to be knowledgeable and effective in all areas of the software life cycle. That means “Operate What You Build”
