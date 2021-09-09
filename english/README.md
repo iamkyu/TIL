@@ -26,3 +26,9 @@
 - Netflix Edge Engineering Team was divided into a development team and an operations team.
 - When things didn’t go well, the costs added up. Communication and knowledge transfers between devs and ops.
 - They finally created a model called "Full Cycle Develop". Full cycle developers are expected to be knowledgeable and effective in all areas of the software life cycle. That means “Operate What You Build”
+
+[Choosing an architecture](https://medium.com/memobank/choosing-an-architecture-85750e1e5a03)
+- This article is about event sourcing architecture.
+- The Memo Bank chose the architecture and to gain advantage of Traceability, Performance, Availability, Consistency, Maintainability
+- Of course "No Silver Bullet". this architecture is more complicated and also has disadvantages
+- In software, the decisive tool isn’t the database or the framework we use, it’s not even the programming language, it’s the architecture.
